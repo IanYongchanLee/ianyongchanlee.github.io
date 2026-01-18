@@ -263,7 +263,7 @@
             clearTimeout(activeTimers[id]);
             activeTimers[id] = setTimeout(() => {
                 closeWorkDetail(id);
-            }, 60000); // 1분 자동 닫기
+            }, 30000); 
         }
     
         function showAndHighlight(workId, bulletId) {
@@ -285,7 +285,7 @@
     <section id="projects" class="py-24 px-6 bg-slate-50">
         <div class="max-w-6xl mx-auto text-left">
             <h2 class="text-4xl font-black mb-4 text-center tracking-tighter">Projects</h2>
-            <p class="text-center text-slate-400 mb-20 font-light italic text-sm text-center">Click each card to explore the full analytical deep-dive.</p>
+            <p class="text-center text-slate-400 mb-20 font-light italic text-sm text-center">Click each card to explore the full analytical.</p>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
                 
