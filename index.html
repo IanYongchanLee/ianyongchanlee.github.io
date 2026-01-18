@@ -59,8 +59,9 @@
 
             <div class="flex-1 flex flex-col justify-center text-center md:text-left">
                 <div class="space-y-6">
-                    <p class="text-xl md:text-3xl font-bold text-slate-800 leading-tight">
-                        Hi, I am <span class="gradient-text">Yongchan Lee (Ian)</span>
+                    <p class="text-xl md:text-5xl font-bold text-slate-800 leading-tight">
+                        Hi, I am <span class="gradient-text">Yongchan Lee</span> 
+                        <span class="text-lg md:text-3xl font-medium text-slate-400 ml-1">(Ian)</span>
                     </p>
                     <p class="text-lg md:text-xl text-slate-600 font-light leading-relaxed">
                         I am a recent graduate of <b>The College of Wooster</b> with a B.A. in Statistical & Data Science and minor in Environmental Studies.
@@ -104,78 +105,182 @@
         </div>
     </section>
 
-    <section id="experience" class="py-16 px-6 bg-white">
+    <section id="experience" class="py-24 px-6 bg-white text-left">
         <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-black mb-10 tracking-tighter flex items-center underline decoration-blue-600 decoration-4 underline-offset-8">Work Experience</h2>
-            
-            <div class="mb-12 relative pl-12 border-l-2 border-slate-200">
-                <div class="flex items-center gap-6">
-                    <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/SWpng.png" alt="Sherwin" class="w-full h-full object-contain"></div>
-                    <div class="flex-1 text-left">
-                        <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900"><h3 class="text-2xl font-bold">Sherwin-Williams</h3><span class="text-slate-400 font-bold text-sm uppercase">May 2025 – Dec 2025</span></div>
-                        <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic">Data Analyst Intern</p>
+            <h2 class="text-3xl font-black mb-16 tracking-tighter flex items-center underline decoration-blue-600 decoration-4 underline-offset-8">Work Experience</h2>
+    
+            <div class="max-w-4xl mx-auto mb-20">
+                <div class="flex items-center justify-center gap-4 mb-8">
+                    <div class="h-[1px] w-8 bg-slate-200"></div>
+                    <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Impact Metrics</h3>
+                    <div class="h-[1px] w-8 bg-slate-200"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div onclick="showAndHighlight('work-sw', 'sw-risk')" class="cursor-pointer bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-blue-400 transition transform hover:-translate-y-1 group">
+                        <p class="text-4xl font-black text-blue-600 mb-1 group-hover:scale-110 transition-transform">90%</p>
+                        <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">Prediction Accuracy</p>
+                    </div>
+                    <div onclick="showAndHighlight('work-sw', 'sw-recovery')" class="cursor-pointer bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-blue-400 transition transform hover:-translate-y-1 group">
+                        <p class="text-4xl font-black text-blue-600 mb-1 group-hover:scale-110 transition-transform">30%</p>
+                        <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">Data Recovered</p>
+                    </div>
+                    <div onclick="showAndHighlight('work-unist', 'unist-r2')" class="cursor-pointer bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-blue-400 transition transform hover:-translate-y-1 group">
+                        <p class="text-4xl font-black text-blue-600 mb-1 group-hover:scale-110 transition-transform">0.15</p>
+                        <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">R² Improvement</p>
                     </div>
                 </div>
             </div>
-            <div class="mb-12 relative pl-12 border-l-2 border-slate-200">
-                <div class="flex items-center gap-6 text-left">
-                    <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/woosterlogo.png" alt="Wooster" class="w-full h-full object-contain"></div>
-                    <div class="flex-1 text-left">
-                        <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900"><h3 class="text-2xl font-bold">The College of Wooster</h3><span class="text-slate-400 font-bold text-sm uppercase">Aug 2025 – Dec 2025</span></div>
-                        <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic">Teaching Assistant</p>
+    
+            <div class="space-y-12">
+                
+                <div class="relative pl-12 border-l-2 border-slate-200">
+                    <div onclick="toggleWorkDetail('work-sw')" class="flex items-center gap-6 cursor-pointer group">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/SWpng.png" alt="Sherwin" class="w-full h-full object-contain"></div>
+                        <div class="flex-1">
+                            <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
+                                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">Sherwin-Williams</h3>
+                                <span class="text-slate-400 font-bold text-sm uppercase">May 2025 – Dec 2025</span>
+                            </div>
+                            <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
+                                Intern, Data Analyst <i id="icon-work-sw" class="fas fa-plus-circle opacity-30"></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="work-sw" class="hidden mt-6 overflow-hidden transition-all duration-500">
+                        <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
+                            <li id="sw-kpi" class="p-2 rounded-lg transition-all duration-500">• Translated an ambiguous risk forecasting request into a clearly defined KPI by formalizing risk as expected financial loss, integrating machinery performance and financial datasets.</li>
+                            <li id="sw-recovery" class="p-2 rounded-lg transition-all duration-500">• Resolved data granularity constraints through data mapping, recovering 30% of unusable data to enable work-center-level analysis.</li>
+                            <li id="sw-risk" class="p-2 rounded-lg transition-all duration-500">• Built and evaluated a Python- and SQL-based risk analysis model, achieving 90% accuracy (±5%) in risk tier prediction.</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div class="mb-12 relative pl-12 border-l-2 border-slate-200 text-left">
-                <div class="flex items-center gap-6 text-left">
-                    <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/UNIST.png" alt="UNIST" class="w-full h-full object-contain"></div>
-                    <div class="flex-1 text-left">
-                        <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900"><h3 class="text-2xl font-bold">UNIST (IRIS LAB)</h3><span class="text-slate-400 font-bold text-sm uppercase">Jun 2024 – Aug 2024</span></div>
-                        <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic">Research Analyst Intern</p>
+    
+                <div class="relative pl-12 border-l-2 border-slate-200">
+                    <div onclick="toggleWorkDetail('work-unist')" class="flex items-center gap-6 cursor-pointer group">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/UNIST.png" alt="UNIST" class="w-full h-full object-contain"></div>
+                        <div class="flex-1">
+                            <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
+                                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">UNIST (IRIS LAB)</h3>
+                                <span class="text-slate-400 font-bold text-sm uppercase">Jun 2024 – Aug 2024</span>
+                            </div>
+                            <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
+                                Intern, Research Analyst <i id="icon-work-unist" class="fas fa-plus-circle opacity-30"></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="work-unist" class="hidden mt-6 overflow-hidden transition-all duration-500">
+                        <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
+                            <li id="unist-pipeline" class="p-2 rounded-lg transition-all duration-500">• Built an automated Python pipeline using NASA APIs to ingest, clean, and integrate large-scale environmental datasets, enabling scalable multi-dimensional analysis.</li>
+                            <li id="unist-eng" class="p-2 rounded-lg transition-all duration-500">• Designed an analysis-ready dataset by engineering environmental and vegetation features aligned with crop growth stages.</li>
+                            <li id="unist-r2" class="p-2 rounded-lg transition-all duration-500">• Validated the analytical value of the engineered features through regression modeling, achieving a 0.15 R² improvement over published benchmarks.</li>
+                        </ul>
                     </div>
                 </div>
-            </div>
-            <div class="relative pl-12 border-l-2 border-slate-200 text-left">
-                <div class="flex items-center gap-6 text-left">
-                    <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/roka.jpeg" alt="ROK Army" class="w-full h-full object-contain"></div>
-                    <div class="flex-1 text-left">
-                        <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900"><h3 class="text-2xl font-bold">Republic of Korea Army</h3><span class="text-slate-400 font-bold text-sm uppercase">Oct 2021 – Apr 2023</span></div>
-                        <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic">Signaler</p>
+    
+                <div class="relative pl-12 border-l-2 border-slate-200">
+                    <div onclick="toggleWorkDetail('work-wooster')" class="flex items-center gap-6 cursor-pointer group">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/woosterlogo.png" alt="Wooster" class="w-full h-full object-contain"></div>
+                        <div class="flex-1">
+                            <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
+                                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">The College of Wooster</h3>
+                                <span class="text-slate-400 font-bold text-sm uppercase">Aug 2025 – Dec 2025</span>
+                            </div>
+                            <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
+                                Teaching Assistant <i id="icon-work-wooster" class="fas fa-plus-circle opacity-30"></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="work-wooster" class="hidden mt-6 overflow-hidden transition-all duration-500">
+                        <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
+                            <li id="wooster-stat" class="p-2 rounded-lg transition-all duration-500">• Supported instruction in regression, classification, and statistical inference, emphasizing assumptions, interpretation, and data integrity.</li>
+                            <li id="wooster-flow" class="p-2 rounded-lg transition-all duration-500">• Guided students through end-to-end data analysis workflows, including data cleaning, exploratory analysis, visualization, and result validation.</li>
+                        </ul>
                     </div>
                 </div>
+    
+                <div class="relative pl-12 border-l-2 border-slate-200">
+                    <div onclick="toggleWorkDetail('work-roka')" class="flex items-center gap-6 cursor-pointer group">
+                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/roka.jpeg" alt="ROK Army" class="w-full h-full object-contain"></div>
+                        <div class="flex-1">
+                            <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
+                                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">Republic of Korea Army</h3>
+                                <span class="text-slate-400 font-bold text-sm uppercase">Oct 2021 – Apr 2023</span>
+                            </div>
+                            <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
+                                Signaler <i id="icon-work-roka" class="fas fa-plus-circle opacity-30"></i>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="work-roka" class="hidden mt-6 overflow-hidden transition-all duration-500">
+                        <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
+                            <li id="roka-setup" class="p-2 rounded-lg transition-all duration-500">• Deployed and maintained tactical communication networks using TRC-512K equipment; reduced network setup time by 33% (15 → under 10 minutes) through optimized antenna assembly and signal configuration.</li>
+                            <li id="roka-award" class="p-2 rounded-lg transition-all duration-500">• Earned a Battalion Training Commendation for exceptional performance and operational readiness during training exercises.</li>
+                            <li id="roka-rank" class="p-2 rounded-lg transition-all duration-500">• Completed Army training camp ranked 4th overall, demonstrating strong performance across technical, written, and physical evaluations.</li>
+                            <li id="roka-counselor" class="p-2 rounded-lg transition-all duration-500">• Served concurrently as a Military Counselor, conducting weekly one-on-one sessions and supporting approximately 50% of company personnel, improving adaptation, morale, and unit cohesion.</li>
+                        </ul>
+                    </div>
+                </div>
+    
             </div>
         </div>
     </section>
-
-    <!-- <section id="projects" class="py-24 px-6 bg-slate-50">
-        <div class="max-w-6xl mx-auto text-left">
-            <h2 class="text-4xl font-black mb-4 text-center tracking-tighter">Projects</h2>
-            <p class="text-center text-slate-400 mb-20 font-light italic text-sm text-center">Click each card to explore the full analytical deep-dive.</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-
-                <div onclick="openModal('modal-thesis')" class="card-hover cursor-pointer bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-md transition-all duration-300">
-                    <div class="text-blue-600 text-3xl mb-8"><i class="fas fa-seedling"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900">Crop Yield Prediction with Climate Factors</h3>
-                    <p class="text-slate-500 text-sm mb-8 leading-relaxed">Predicting corn, soybean, and wheat yields via XGBoost and SHAP to strengthen food security under climate volatility</p>
-                    <div class="flex items-center text-[10px] font-black text-blue-600 tracking-widest uppercase">Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i></div>
-                </div>
-
-                <div onclick="openModal('modal-epl')" class="card-hover cursor-pointer bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-md transition-all duration-300">
-                    <div class="text-indigo-600 text-3xl mb-8"><i class="fas fa-running"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900">EPL Athlete Performance Model</h3>
-                    <p class="text-slate-500 text-sm mb-8 leading-relaxed">Modeling the impact of age on Premier League player productivity through multiple linear regression and continental clustering.</p>
-                    <div class="flex items-center text-[10px] font-black text-indigo-600 tracking-widest uppercase">Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i></div>
-                </div>
-
-                <div onclick="openModal('modal-life')" class="card-hover cursor-pointer bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-md transition-all duration-300">
-                    <div class="text-emerald-600 text-3xl mb-8"><i class="fas fa-heartbeat"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900">Global Life Expectancy Analysis</h3>
-                    <p class="text-slate-500 text-sm mb-8 leading-relaxed">Analyzing the correlation between national dietary patterns and global life expectancy using multidimensional Tableau dashboards.</p>
-                    <div class="flex items-center text-[10px] font-black text-emerald-600 tracking-widest uppercase">Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i></div>
-                </div>
-            </div>
-        </div>
-    </section> -->
+    
+    <style>
+        .highlight-bullet {
+            background-color: #eff6ff !important; 
+            border-left: 4px solid #2563eb !important;
+            color: #1e40af !important;
+            font-weight: 600 !important;
+        }
+    </style>
+    
+    <script>
+        let activeTimers = {};
+    
+        function toggleWorkDetail(id) {
+            const detail = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            if (detail.classList.contains('hidden')) {
+                detail.classList.remove('hidden');
+                if(icon) icon.className = 'fas fa-minus-circle text-blue-600';
+                resetTimer(id);
+            } else {
+                closeWorkDetail(id);
+            }
+        }
+    
+        function closeWorkDetail(id) {
+            const detail = document.getElementById(id);
+            const icon = document.getElementById('icon-' + id);
+            if (detail) {
+                detail.classList.add('hidden');
+                if(icon) icon.className = 'fas fa-plus-circle opacity-30';
+            }
+            clearTimeout(activeTimers[id]);
+        }
+    
+        function resetTimer(id) {
+            clearTimeout(activeTimers[id]);
+            activeTimers[id] = setTimeout(() => {
+                closeWorkDetail(id);
+            }, 60000); // 1분 자동 닫기
+        }
+    
+        function showAndHighlight(workId, bulletId) {
+            const detail = document.getElementById(workId);
+            if (detail.classList.contains('hidden')) {
+                toggleWorkDetail(workId);
+            } else {
+                resetTimer(workId); 
+            }
+            const bullet = document.getElementById(bulletId);
+            bullet.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            bullet.classList.add('highlight-bullet');
+            setTimeout(() => {
+                bullet.classList.remove('highlight-bullet');
+            }, 4000);
+        }
+    </script>
     
     <section id="projects" class="py-24 px-6 bg-slate-50">
         <div class="max-w-6xl mx-auto text-left">
@@ -261,13 +366,13 @@
     </section>
 
     <footer class="py-20 text-center border-t border-slate-100">
-    <p class="font-black tracking-[0.5em] mb-4 text-slate-900 uppercase">Yongchan Lee</p>
-    
-    <p class="text-[9px] text-slate-400 uppercase tracking-widest italic mb-8">Statistical Analysis & Data Science</p>
-    
-    <p class="text-[10px] text-slate-300 uppercase tracking-[0.2em]">
-        © 2026 Yongchan Lee. All Rights Reserved.
-    </p>
+        <p class="font-black tracking-[0.5em] mb-4 text-slate-900 uppercase">Yongchan Lee</p>
+        
+        <p class="text-[9px] text-slate-400 uppercase tracking-widest italic mb-8">Statistical Analysis & Data Science</p>
+        
+        <p class="text-[10px] text-slate-300 uppercase tracking-[0.2em]">
+            © 2026 Yongchan Lee. All Rights Reserved.
+        </p>
     </footer>
 
     <div id="lightbox" class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/90 backdrop-blur-md cursor-zoom-out" onclick="closeLightbox()">
@@ -299,9 +404,9 @@
                 </div>
     
                 <div class="space-y-6 text-slate-600 text-lg font-light leading-relaxed">
-                    <p><strong>Project Purpose:</strong> <br> Aimed to ensure food security as the global population and climate instability continue to rise. This study focuses on predicting the yields of corn, soybean, and wheat using a machine learning approach to empower data-driven agricultural policies.</p>
-                    <p><strong>Methodology:</strong> <br> Utilized six years of county-level data for five climate variables: temperature, precipitation, solar radiation, CO₂, and soil moisture. An XGBoost model was trained for each crop, and the SHAP framework was implemented to ensure model interpretability.</p>
-                    <p><strong>Results & Conclusion:</strong> <br> Achieved high predictive accuracy with R² values of 0.76 for corn and 0.81 for soybean. SHAP analysis confirmed that summer temperature and precipitation are the most influential predictors, aligning with established agronomic principles.</p>
+                    <p><strong><b>Project Purpose:</b></strong> <br> Aimed to ensure food security as the global population and climate instability continue to rise. This study focuses on predicting the yields of corn, soybean, and wheat using a machine learning approach to empower data-driven agricultural policies.</p>
+                    <p><strong><b>Methodology:</b></strong> <br> Utilized six years of county-level data for five climate variables: temperature, precipitation, solar radiation, CO₂, and soil moisture. An XGBoost model was trained for each crop, and the SHAP framework was implemented to ensure model interpretability.</p>
+                    <p><strong><b>Results & Conclusion:</b></strong> <br> Achieved high predictive accuracy with R² values of 0.76 for corn and 0.81 for soybean. SHAP analysis confirmed that summer temperature and precipitation are the most influential predictors, aligning with established agronomic principles.</p>
                     
                     <div class="pt-8">
                         <a href="paper/IS Thesis - YL.pdf" target="_blank" class="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl hover:bg-blue-700 transition shadow-lg shadow-blue-200 font-bold uppercase tracking-widest text-sm">
@@ -333,9 +438,9 @@
 
     
                 <div class="space-y-6 text-slate-600 text-lg font-light leading-relaxed">
-                    <p><strong>Project Purpose:</strong> <br> Investigated whether a player’s age significantly impacts their on-field performance outcomes, defined as non-penalty goals and assists per 90 minutes, within the English Premier League.</p>
-                    <p><strong>Methodology:</strong> <br> Developed a multiple linear regression model using data from 456 players during the 2023-2024 season. To address data sparsity across nationalities, players were clustered into five continental groups, and a stepwise regression was performed to select the most efficient model based on simplicity and Mean Squared Error (MSE).</p>
-                    <p><strong>Results & Conclusion:</strong> <br> Out of 7 models, the best performed final model yielded an adjusted R² of 0.4644 and revealed a positive relationship between age and performance within the 17–38 age range. Multicollinearity was ruled out via VIF testing, establishing a stable baseline for comparing athlete productivity regardless of origin.</p>
+                    <p><strong><b>Project Purpose:</b></strong> <br> Investigated whether a player’s age significantly impacts their on-field performance outcomes, defined as non-penalty goals and assists per 90 minutes, within the English Premier League.</p>
+                    <p><strong><b>Methodology:</b></strong> <br> Developed a multiple linear regression model using data from 456 players during the 2023-2024 season. To address data sparsity across nationalities, players were clustered into five continental groups, and a stepwise regression was performed to select the most efficient model based on simplicity and Mean Squared Error (MSE).</p>
+                    <p><strong><b>Results & Conclusion:</b></strong> <br> Out of 7 models, the best performed final model yielded an adjusted R² of 0.4644 and revealed a positive relationship between age and performance within the 17–38 age range. Multicollinearity was ruled out via VIF testing, establishing a stable baseline for comparing athlete productivity regardless of origin.</p>
                     
                     <div class="pt-8">
                         <a href="paper/Fianl Paper.pdf" target="_blank" class="inline-flex items-center gap-3 bg-indigo-600 text-white px-8 py-4 rounded-2xl hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 font-bold uppercase tracking-widest text-sm">
@@ -362,9 +467,9 @@
                 </div>
     
                 <div class="space-y-6 text-slate-600 text-lg font-light leading-relaxed">
-                    <p><strong>Project Purpose:</strong> <br> Explored the relationship between food consumption, nutrient intake, and life expectancy across continents to identify dietary patterns of long-living populations.</p>
-                    <p><strong>Methodology:</strong> <br> Integrated 2018–2022 data from the FAO and World Bank Group. Used Tableau to create interactive visualizations, including box plots for continental distribution and radar charts for multi-nutrient supply comparisons.</p>
-                    <p><strong>Results & Conclusion:</strong> <br> Found strong positive correlations between protein/energy intake and life expectancy. Recommended increasing fish and dairy consumption while ensuring sufficient daily caloric and protein intake for improved longevity.</p>
+                    <p><strong><b>Project Purpose:</b></strong> <br> Explored the relationship between food consumption, nutrient intake, and life expectancy across continents to identify dietary patterns of long-living populations.</p>
+                    <p><strong><b>Methodology:</b></strong> <br> Integrated 2018–2022 data from the FAO and World Bank Group. Used Tableau to create interactive visualizations, including box plots for continental distribution and radar charts for multi-nutrient supply comparisons.</p>
+                    <p><strong><b>Results & Conclusion:</b></strong> <br> Found strong positive correlations between protein/energy intake and life expectancy. Recommended increasing fish and dairy consumption while ensuring sufficient daily caloric and protein intake for improved longevity.</p>
                     
                     <div class="pt-8">
                         <a href="paper/LE_Final Report.pdf" target="_blank" class="inline-flex items-center gap-3 bg-emerald-600 text-white px-8 py-4 rounded-2xl hover:bg-emerald-700 transition shadow-lg shadow-emerald-200 font-bold uppercase tracking-widest text-sm">
@@ -422,111 +527,3 @@
             if (menu) menu.classList.toggle('hidden');
         }
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- 
-
-<div id="modal-thesis" class="modal fixed w-full h-full top-0 left-0 items-center justify-center z-[100] text-left">
-    <div onclick="closeModal('modal-thesis')" class="absolute w-full h-full bg-slate-900/90 backdrop-blur-sm"></div>
-    <div class="bg-white w-11/12 md:max-w-6xl mx-auto rounded-[3rem] shadow-2xl z-[110] relative overflow-y-auto max-h-[90vh]">
-        <div class="p-10 md:p-16 text-left">
-            <h3 class="text-3xl font-black text-blue-600 mb-8 leading-tight">Predicting Crop Yield with Climate Factors</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('image/flowchart.png')">
-                    <img src="image/flowchart.png" alt="Model Logic" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('image/result.png')">
-                    <img src="image/result.png" alt="Prediction vs Actual" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('image/shap.png')">
-                    <img src="image/shap.png" alt="SHAP interpretation" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-
-            <div class="space-y-6 text-slate-600 text-lg font-light leading-relaxed">
-                <p><strong>Project Purpose:</strong> <br> Aimed to ensure food security as the global population and climate instability continue to rise. This study focuses on predicting the yields of corn, soybean, and wheat using a machine learning approach to empower data-driven agricultural policies.</p>
-                <p><strong>Methodology:</strong> <br> Utilized six years of county-level data for five climate variables: temperature, precipitation, solar radiation, CO₂, and soil moisture. An XGBoost model was trained for each crop, and the SHAP framework was implemented to ensure model interpretability.</p>
-                <p><strong>Results & Conclusion:</strong> <br> Achieved high predictive accuracy with R² values of 0.76 for corn and 0.81 for soybean. SHAP analysis confirmed that summer temperature and precipitation are the most influential predictors, aligning with established agronomic principles.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="modal-epl" class="modal fixed w-full h-full top-0 left-0 items-center justify-center z-[100] text-left">
-    <div onclick="closeModal('modal-epl')" class="absolute w-full h-full bg-slate-900/90 backdrop-blur-sm"></div>
-    <div class="bg-white w-11/12 md:max-w-6xl mx-auto rounded-[3rem] shadow-2xl z-[110] relative overflow-y-auto max-h-[90vh]">
-        <div class="p-10 md:p-16 text-left">
-            <h3 class="text-3xl font-black text-indigo-600 mb-8 leading-tight">Age vs. Performance in the Premier League</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('epl_img1.png')">
-                    <img src="epl_img1.png" alt="Regression Visualization" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('epl_img2.png')">
-                    <img src="epl_img2.png" alt="ANOVA Results" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('epl_img3.png')">
-                    <img src="epl_img3.png" alt="VIF Results" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-
-            <div class="space-y-6 text-slate-600 text-lg font-light leading-relaxed">
-                <p><strong>Project Purpose:</strong> <br> Investigated whether a player’s age significantly impacts their on-field performance outcomes, defined as non-penalty goals and assists per 90 minutes (G+A-PK_90), within the English Premier League.</p>
-                <p><strong>Methodology:</strong> <br> Developed a multiple linear regression model using data from 456 players during the 2023-2024 season7777. To address data sparsity across nationalities, players were clustered into five continental groups, and a stepwise regression was performed to select the most efficient model based on simplicity and Mean Squared Error (MSE).</p>
-                <p><strong>Results & Conclusion:</strong> <br> The final model yielded an adjusted R² of 0.4644 and revealed a positive relationship between age and performance within the 17–38 age range999999999. Multicollinearity was ruled out via VIF testing, establishing a stable baseline for comparing athlete productivity regardless of origin.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="modal-life" class="modal fixed w-full h-full top-0 left-0 items-center justify-center z-[100] text-left">
-    <div onclick="closeModal('modal-life')" class="absolute w-full h-full bg-slate-900/90 backdrop-blur-sm"></div>
-    <div class="bg-white w-11/12 md:max-w-6xl mx-auto rounded-[3rem] shadow-2xl z-[110] relative overflow-y-auto max-h-[90vh]">
-        <div class="p-10 md:p-16 text-left">
-            <h3 class="text-3xl font-black text-emerald-600 mb-8 leading-tight">Global Longevity Determinants (Tableau)</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('life_img1.png')">
-                    <img src="life_img1.png" alt="Continental Expectancy" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('life_img2.png')">
-                    <img src="life_img2.png" alt="Nutrition Correlation" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('life_img3.png')">
-                    <img src="life_img3.png" alt="Nutrient Radar" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-
-            <div class="space-y-6 text-slate-600 text-lg font-light leading-relaxed">
-                <p><strong>Project Purpose:</strong> <br> Explored the relationship between food consumption, nutrient intake, and life expectancy across continents to identify dietary patterns of long-living populations.</p>
-                <p><strong>Methodology:</strong> <br> Integrated 2018–2022 data from the FAO and World Bank Group. Used Tableau to create interactive visualizations, including box plots for continental distribution and radar charts for multi-nutrient supply comparisons.</p>
-                <p><strong>Results & Conclusion:</strong> <br> Found strong positive correlations between protein/energy intake and life expectancy. Recommended increasing fish and dairy consumption while ensuring sufficient daily caloric and protein intake for improved longevity.</p>
-            </div>
-        </div>
-    </div>
-</div> -->
