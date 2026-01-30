@@ -407,14 +407,15 @@
         const swiper = new Swiper('.project-swiper', {
             effect: 'coverflow',
             grabCursor: true,
-            centeredSlides: true,
-            slidesPerView: 'auto',
-            loop: false, 
+            centeredSlides: true, // 현재 슬라이드를 중앙에 배치
+            initialSlide: 0,
+            loop: false, // 리미트 기능 활성화
+            speed: 600,  // 이동 속도 (부드럽게)
             coverflowEffect: {
-                rotate: 15,
+                rotate: 5,     // 회전 각도를 낮추면 더 안정적입니다.
                 stretch: 0,
                 depth: 100,
-                modifier: 1.5,
+                modifier: 2,   // 효과 강도
                 slideShadows: false,
             },
             pagination: {
@@ -424,55 +425,42 @@
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
+            },
+            // 화면 크기에 따른 카드 개수 고정 (점프 현상 해결의 핵심)
+            breakpoints: {
+                320: { slidesPerView: 1.2, spaceBetween: 20 }, // 모바일
+                768: { slidesPerView: 2, spaceBetween: 30 },   // 태블릿
+                1024: { slidesPerView: 3, spaceBetween: 40 }   // 데스크탑 (3개 고정)
             }
         });
     </script>
     
     <style>
         .project-swiper {
-            overflow: visible !important;
-        }
-    
-        .swiper-slide {
-            width: 300px;
-            transition: transform 0.3s ease;
-            opacity: 0.6; 
-        }
-        .swiper-slide-active {
-            opacity: 1; 
-        }
-        
-        @media (min-width: 768px) {
-            .swiper-slide { width: 400px; }
-        }
-    
-        .card-hover:hover {
-            transform: translateY(-15px) !important;
-        }
-    
-        .swiper-button-next, .swiper-button-prev {
-            background: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            border: 1px solid #f1f5f9;
-            z-index: 50;
-        }
-        .swiper-button-disabled {
-            opacity: 0 !important;
-            pointer-events: none;
-        }
-        .swiper-button-next::after, .swiper-button-prev::after {
-            font-size: 1.2rem !important;
-            font-weight: bold;
-        }
-    
-        .swiper-pagination-bullet-active {
-            background: #2563eb !important;
-            width: 24px !important;
-            border-radius: 4px !important;
-        }
+    overflow: visible !important; /* 호버 시 카드가 잘리지 않게 함 */
+    padding-top: 50px !important;
+}
+
+.swiper-slide {
+    width: 100%; 
+    /* max-width를 주어 카드가 너무 커지지 않게 제한합니다. */
+    max-width: 380px; 
+    transition: all 0.4s ease;
+    opacity: 0.3; /* 옆에 있는 카드는 흐리게 */
+    transform: scale(0.8); /* 옆에 있는 카드는 작게 */
+}
+
+/* 중앙에 있는 카드만 뚜렷하고 크게 보이게 함 */
+.swiper-slide-active {
+    opacity: 1;
+    transform: scale(1.05);
+    z-index: 10;
+}
+
+/* 카드 호버 시 위로 뜨는 효과 */
+.card-hover:hover {
+    transform: translateY(-20px) !important;
+}
     </style>
 
     <section id="skills" class="py-24 bg-slate-900 text-white px-6 text-center">
