@@ -739,25 +739,39 @@
                         </div>
                     </section>
 
-    
                     <section>
                         <h3 class="text-xs font-black text-amber-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
                             <span class="w-8 h-px bg-amber-100"></span> 03. Results & Insights
                         </h3>
                         <div class="pl-11 border-l-2 border-slate-100">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                                 <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
                                     <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Portfolio Baseline</h4>
-                                    <p class="text-slate-500 text-sm leading-relaxed font-light">Identified Natural Gas as the primary driver for Scope 1 emissions and pinpointed assets for electrification capital expenditure prioritization.</p>
+                                    <p class="text-slate-500 text-base leading-normal font-light">
+                                        Identified Natural Gas as the primary driver for Scope 1 emissions, pinpointing key assets for electrification and capital expenditure prioritization.
+                                    </p>
                                 </div>
                                 <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
                                     <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Market Benchmark</h4>
-                                    <p class="text-slate-500 text-sm leading-relaxed font-light">Visualized the "Pseudo-Rockefeller" assets against geographic peers via Risk Heatmaps to identify Top 10 "Penalty Cliff" assets.</p>
+                                    <p class="text-slate-500 text-base leading-normal font-light">
+                                        Visualized "Pseudo-Rockefeller" assets against NYC geographic peers via Risk Heatmaps to identify Top 10 "Penalty Cliff" assets.
+                                    </p>
                                 </div>
                             </div>
-                            <a href="#" class="inline-flex items-center gap-3 bg-amber-600 text-white px-8 py-4 rounded-2xl hover:bg-amber-700 transition shadow-lg shadow-amber-200 font-bold uppercase tracking-widest text-xs">
-                                <i class="fas fa-external-link-alt"></i> View Interactive Dashboard
-                            </a>
+                    
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="https://public.tableau.com/views/RockefellerPortfolioCarbonInventoryEmissionsBaseline/2024Snapshot?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" 
+                                   target="_blank" 
+                                   class="flex-1 inline-flex items-center justify-center gap-3 bg-amber-600 text-white px-6 py-4 rounded-2xl hover:bg-amber-700 transition shadow-lg shadow-amber-200 font-bold uppercase tracking-widest text-[10px]">
+                                    <i class="fas fa-chart-pie text-lg"></i> Dashboard 1: Portfolio Baseline
+                                </a>
+                                
+                                <a href="https://public.tableau.com/views/MarketIntelligenceNYCLarge-OfficeCarbonBenchmarking/NYC?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" 
+                                   target="_blank" 
+                                   class="flex-1 inline-flex items-center justify-center gap-3 bg-amber-800 text-white px-6 py-4 rounded-2xl hover:bg-slate-900 transition shadow-lg shadow-slate-200 font-bold uppercase tracking-widest text-[10px]">
+                                    <i class="fas fa-city text-lg"></i> Dashboard 2: Market Intelligence
+                                </a>
+                            </div>
                         </div>
                     </section>
                 </div>
@@ -811,126 +825,3 @@
             if (menu) menu.classList.toggle('hidden');
         }
     </script>
-
-
-
-
-
-
-    <!-- <section id="projects" class="py-24 px-6 bg-slate-50">
-        <div class="max-w-6xl mx-auto text-left">
-            <h2 class="text-4xl font-black mb-4 text-center tracking-tighter">Projects</h2>
-            <p class="text-center text-slate-400 mb-20 font-light italic text-sm text-center">Click each card to explore the full analytical deep-dive.</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-
-                <div onclick="openModal('modal-thesis')" class="card-hover cursor-pointer bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-md transition-all duration-300">
-                    <div class="text-blue-600 text-3xl mb-8"><i class="fas fa-seedling"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900">Crop Yield Prediction with Climate Factors</h3>
-                    <p class="text-slate-500 text-sm mb-8 leading-relaxed">Predicting corn, soybean, and wheat yields via XGBoost and SHAP to strengthen food security under climate volatility</p>
-                    <div class="flex items-center text-[10px] font-black text-blue-600 tracking-widest uppercase">Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i></div>
-                </div>
-
-                <div onclick="openModal('modal-epl')" class="card-hover cursor-pointer bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-md transition-all duration-300">
-                    <div class="text-indigo-600 text-3xl mb-8"><i class="fas fa-running"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900">EPL Athlete Performance Model</h3>
-                    <p class="text-slate-500 text-sm mb-8 leading-relaxed">Modeling the impact of age on Premier League player productivity through multiple linear regression and continental clustering.</p>
-                    <div class="flex items-center text-[10px] font-black text-indigo-600 tracking-widest uppercase">Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i></div>
-                </div>
-
-                <div onclick="openModal('modal-life')" class="card-hover cursor-pointer bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-md transition-all duration-300">
-                    <div class="text-emerald-600 text-3xl mb-8"><i class="fas fa-heartbeat"></i></div>
-                    <h3 class="text-xl font-bold mb-4 text-slate-900">Global Life Expectancy Analysis</h3>
-                    <p class="text-slate-500 text-sm mb-8 leading-relaxed">Analyzing the correlation between national dietary patterns and global life expectancy using multidimensional Tableau dashboards.</p>
-                    <div class="flex items-center text-[10px] font-black text-emerald-600 tracking-widest uppercase">Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i></div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-
-
-
-
-
-<!-- 
-
-<div id="modal-thesis" class="modal fixed w-full h-full top-0 left-0 items-center justify-center z-[100] text-left">
-    <div onclick="closeModal('modal-thesis')" class="absolute w-full h-full bg-slate-900/90 backdrop-blur-sm"></div>
-    <div class="bg-white w-11/12 md:max-w-6xl mx-auto rounded-[3rem] shadow-2xl z-[110] relative overflow-y-auto max-h-[90vh]">
-        <div class="p-10 md:p-16 text-left">
-            <h3 class="text-3xl font-black text-blue-600 mb-8 leading-tight">Predicting Crop Yield with Climate Factors</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('image/flowchart.png')">
-                    <img src="image/flowchart.png" alt="Model Logic" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('image/result.png')">
-                    <img src="image/result.png" alt="Prediction vs Actual" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('image/shap.png')">
-                    <img src="image/shap.png" alt="SHAP interpretation" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-
-            <div class="space-y-6 text-slate-600 text-lg font-light leading-relaxed">
-                <p><strong>Project Purpose:</strong> <br> Aimed to ensure food security as the global population and climate instability continue to rise. This study focuses on predicting the yields of corn, soybean, and wheat using a machine learning approach to empower data-driven agricultural policies.</p>
-                <p><strong>Methodology:</strong> <br> Utilized six years of county-level data for five climate variables: temperature, precipitation, solar radiation, CO₂, and soil moisture. An XGBoost model was trained for each crop, and the SHAP framework was implemented to ensure model interpretability.</p>
-                <p><strong>Results & Conclusion:</strong> <br> Achieved high predictive accuracy with R² values of 0.76 for corn and 0.81 for soybean. SHAP analysis confirmed that summer temperature and precipitation are the most influential predictors, aligning with established agronomic principles.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="modal-epl" class="modal fixed w-full h-full top-0 left-0 items-center justify-center z-[100] text-left">
-    <div onclick="closeModal('modal-epl')" class="absolute w-full h-full bg-slate-900/90 backdrop-blur-sm"></div>
-    <div class="bg-white w-11/12 md:max-w-6xl mx-auto rounded-[3rem] shadow-2xl z-[110] relative overflow-y-auto max-h-[90vh]">
-        <div class="p-10 md:p-16 text-left">
-            <h3 class="text-3xl font-black text-indigo-600 mb-8 leading-tight">Age vs. Performance in the Premier League</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('epl_img1.png')">
-                    <img src="epl_img1.png" alt="Regression Visualization" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('epl_img2.png')">
-                    <img src="epl_img2.png" alt="ANOVA Results" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('epl_img3.png')">
-                    <img src="epl_img3.png" alt="VIF Results" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-
-            <div class="space-y-6 text-slate-600 text-lg font-light leading-relaxed">
-                <p><strong>Project Purpose:</strong> <br> Investigated whether a player’s age significantly impacts their on-field performance outcomes, defined as non-penalty goals and assists per 90 minutes (G+A-PK_90), within the English Premier League.</p>
-                <p><strong>Methodology:</strong> <br> Developed a multiple linear regression model using data from 456 players during the 2023-2024 season7777. To address data sparsity across nationalities, players were clustered into five continental groups, and a stepwise regression was performed to select the most efficient model based on simplicity and Mean Squared Error (MSE).</p>
-                <p><strong>Results & Conclusion:</strong> <br> The final model yielded an adjusted R² of 0.4644 and revealed a positive relationship between age and performance within the 17–38 age range999999999. Multicollinearity was ruled out via VIF testing, establishing a stable baseline for comparing athlete productivity regardless of origin.</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div id="modal-life" class="modal fixed w-full h-full top-0 left-0 items-center justify-center z-[100] text-left">
-    <div onclick="closeModal('modal-life')" class="absolute w-full h-full bg-slate-900/90 backdrop-blur-sm"></div>
-    <div class="bg-white w-11/12 md:max-w-6xl mx-auto rounded-[3rem] shadow-2xl z-[110] relative overflow-y-auto max-h-[90vh]">
-        <div class="p-10 md:p-16 text-left">
-            <h3 class="text-3xl font-black text-emerald-600 mb-8 leading-tight">Global Longevity Determinants (Tableau)</h3>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('life_img1.png')">
-                    <img src="life_img1.png" alt="Continental Expectancy" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('life_img2.png')">
-                    <img src="life_img2.png" alt="Nutrition Correlation" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-                <div class="bg-slate-50 aspect-video rounded-3xl flex items-center justify-center border border-slate-100 overflow-hidden shadow-sm group cursor-zoom-in" onclick="openLightbox('life_img3.png')">
-                    <img src="life_img3.png" alt="Nutrient Radar" class="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300">
-                </div>
-            </div>
-
-            <div class="space-y-6 text-slate-600 text-lg font-light leading-relaxed">
-                <p><strong>Project Purpose:</strong> <br> Explored the relationship between food consumption, nutrient intake, and life expectancy across continents to identify dietary patterns of long-living populations.</p>
-                <p><strong>Methodology:</strong> <br> Integrated 2018–2022 data from the FAO and World Bank Group. Used Tableau to create interactive visualizations, including box plots for continental distribution and radar charts for multi-nutrient supply comparisons.</p>
-                <p><strong>Results & Conclusion:</strong> <br> Found strong positive correlations between protein/energy intake and life expectancy. Recommended increasing fish and dairy consumption while ensuring sufficient daily caloric and protein intake for improved longevity.</p>
-            </div>
-        </div>
-    </div>
-</div> -->
