@@ -1,827 +1,1281 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yongchan Lee | Strategy & Insight Analyst</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
-        .modal { transition: all 0.3s ease-in-out; display: none; }
-        .modal.active { display: flex; opacity: 1; pointer-events: auto; }
-        body.modal-active { overflow: hidden; }
-        .gradient-text { background: linear-gradient(90deg, #1d4ed8, #4338ca); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        .card-hover { transition: all 0.3s ease; }
-        .card-hover:hover { transform: translateY(-8px); box-shadow: 0 25px 30px -10px rgb(0 0 0 / 0.15); border-color: #bfdbfe; }
-        .card-hover .arrow-icon { transition: transform 0.3s ease; }
-        .card-hover:hover .arrow-icon { transform: translateX(6px); }
-        
-        #mobile-menu-container.hidden { display: none; }
-        li { transition: all 0.3s ease; scroll-margin-top: 100px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yongchan Lee | Strategy & Insight Analyst</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ZB34R5KB7"></script>
-    <script>
+  <style>
+    .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px); }
+    .modal { transition: all 0.3s ease-in-out; display: none; }
+    .modal.active { display: flex; opacity: 1; pointer-events: auto; }
+    body.modal-active { overflow: hidden; }
+    .gradient-text { background: linear-gradient(90deg, #1d4ed8, #4338ca); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    .card-hover { transition: all 0.3s ease; }
+    /* Adjusted hover so it doesn't conflict with swiper transforms */
+    .card-hover:hover { box-shadow: 0 25px 30px -10px rgb(0 0 0 / 0.15); border-color: #bfdbfe; }
+    .card-hover .arrow-icon { transition: transform 0.3s ease; }
+    .card-hover:hover .arrow-icon { transform: translateX(6px); }
+
+    #mobile-menu-container.hidden { display: none; }
+    li { transition: all 0.3s ease; scroll-margin-top: 100px; }
+
+    /* --- PROJECTS: screenshot-style carousel (UPDATED) --- */
+    .project-swiper {
+      overflow: visible !important;
+      padding-top: 80px !important; 
+      padding-bottom: 70px !important;
+    }
+
+    .project-swiper .swiper-wrapper {
+      align-items: stretch;
+    }
+
+    /* far/inactive */
+    .project-swiper .swiper-slide {
+      width: 100%;
+      max-width: 380px;
+      transition: transform 400ms ease, opacity 400ms ease, filter 400ms ease;
+      opacity: 0.22;
+      transform: scale(0.86) translateY(18px);
+      filter: blur(0.6px);
+      z-index: 1;
+      pointer-events: auto !important;
+    }
+
+    /* adjacent left/right */
+    .project-swiper .swiper-slide-prev,
+    .project-swiper .swiper-slide-next {
+      opacity: 0.45;
+      transform: scale(0.92) translateY(10px);
+      filter: blur(0.25px);
+      z-index: 5;
+    }
+
+    /* active center */
+    .project-swiper .swiper-slide-active {
+      opacity: 1;
+      transform: scale(1.06) translateY(0px);
+      filter: none;
+      z-index: 20;
+      position: relative;
+    }
+
+    .project-swiper .swiper-slide-active .card-hover {
+      box-shadow: 0 25px 30px -10px rgb(0 0 0 / 0.15);
+    }
+
+    /* Pagination dots */
+    .project-swiper .swiper-pagination {
+      bottom: 18px !important;
+    }
+    .project-swiper .swiper-pagination-bullet {
+      width: 7px;
+      height: 7px;
+      opacity: 0.25;
+    }
+    .project-swiper .swiper-pagination-bullet-active {
+      opacity: 1;
+      transform: scale(1.15);
+    }
+
+    /* Big side arrows like screenshot */
+    .swiper-button-next,
+    .swiper-button-prev {
+      width: 54px !important;
+      height: 54px !important;
+      border-radius: 9999px;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 20px 25px -10px rgb(0 0 0 / 0.12);
+      border: 1px solid rgb(226 232 240);
+      top: 56% !important;
+      transform: translateY(-50%);
+    }
+
+    .swiper-button-next::after,
+    .swiper-button-prev::after {
+      font-size: 18px !important;
+      font-weight: 800;
+    }
+
+    .swiper-button-prev { left: -10px !important; }
+    .swiper-button-next { right: -10px !important; }
+
+    @media (min-width: 768px) {
+      .swiper-button-prev { left: -46px !important; }
+      .swiper-button-next { right: -46px !important; }
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+      border-color: rgb(191 219 254);
+      transform: translateY(-50%) scale(1.03);
+    }
+  </style>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8ZB34R5KB7"></script>
+  <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-8ZB34R5KB7');
-    </script>
+  </script>
 
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body class="bg-slate-50 text-slate-900 font-sans tracking-tight">
 
-    <nav class="fixed w-full glass shadow-sm z-50 border-b border-white/20">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center text-center">
-            <a href="#" class="text-2xl font-black gradient-text">YL</a>
-            <div class="hidden md:flex items-center space-x-10 text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
-                <a href="#about" class="hover:text-blue-600 transition">About</a>
-                <a href="#education" class="hover:text-blue-600 transition">Education</a>
-                <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
-                <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
-                <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
-                <a href="Resume_Yongchan.pdf" download class="bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition flex items-center gap-2 shadow-md shadow-blue-100 uppercase tracking-widest text-[10px]">
-                    <i class="fas fa-file-download"></i> Resume
-                </a>
-            </div>
-            <button onclick="toggleMobileMenu()" class="md:hidden text-slate-600 focus:outline-none"><i class="fas fa-bars text-xl"></i></button>
+  <nav class="fixed w-full glass shadow-sm z-50 border-b border-white/20">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center text-center">
+      <a href="#" class="text-2xl font-black gradient-text">YL</a>
+      <div class="hidden md:flex items-center space-x-10 text-xs font-bold uppercase tracking-[0.2em] text-slate-500">
+        <a href="#about" class="hover:text-blue-600 transition">About</a>
+        <a href="#education" class="hover:text-blue-600 transition">Education</a>
+        <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
+        <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
+        <a href="#skills" class="hover:text-blue-600 transition">Skills</a>
+        <a href="Resume_Yongchan.pdf" download class="bg-blue-600 text-white px-5 py-2.5 rounded-xl hover:bg-blue-700 transition flex items-center gap-2 shadow-md shadow-blue-100 uppercase tracking-widest text-[10px]">
+          <i class="fas fa-file-download"></i> Resume
+        </a>
+      </div>
+      <button onclick="toggleMobileMenu()" class="md:hidden text-slate-600 focus:outline-none"><i class="fas fa-bars text-xl"></i></button>
+    </div>
+    <div id="mobile-menu-container" class="hidden md:hidden bg-white border-b border-slate-100 px-6 py-6 space-y-4 shadow-xl text-left">
+      <a href="#about" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">About</a>
+      <a href="#education" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">Education</a>
+      <a href="#experience" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">Experience</a>
+      <a href="#projects" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">Projects</a>
+      <a href="#skills" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">Skills</a>
+      <a href="Resume_Yongchan.pdf" download class="block text-sm font-bold text-blue-600 uppercase tracking-widest">Download Resume</a>
+    </div>
+  </nav>
+
+  <section id="about" class="pt-40 pb-16 px-6 max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row items-center md:items-center gap-16 md:gap-24">
+      <div class="w-72 h-72 md:w-96 md:h-[28rem] flex-shrink-0 transform hover:scale-105 transition-transform duration-300">
+        <div class="w-full h-full rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
+          <img src="image/me.png" alt="Yongchan Lee" class="w-full h-full object-cover">
         </div>
-        <div id="mobile-menu-container" class="hidden md:hidden bg-white border-b border-slate-100 px-6 py-6 space-y-4 shadow-xl text-left">
-            <a href="#about" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">About</a>
-            <a href="#education" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">Education</a>
-            <a href="#experience" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">Experience</a>
-            <a href="#projects" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">Projects</a>
-            <a href="#skills" onclick="toggleMobileMenu()" class="block text-sm font-bold text-slate-600 uppercase tracking-widest">Skills</a>
-            <a href="Resume_Yongchan.pdf" download class="block text-sm font-bold text-blue-600 uppercase tracking-widest">Download Resume</a>
+      </div>
+
+      <div class="flex-1 flex flex-col justify-center text-center md:text-left">
+        <div class="space-y-6">
+          <p class="text-xl md:text-5xl font-bold text-slate-800 leading-tight">
+            Hi, I am <span class="gradient-text">Yongchan Lee</span>
+            <span class="text-lg md:text-3xl font-medium text-slate-400 ml-1">(Ian)</span>
+          </p>
+          <p class="text-lg md:text-xl text-slate-600 font-light leading-relaxed">
+            I am a recent graduate of <b>The College of Wooster</b> with a B.A. in Statistical & Data Science and minor in Environmental Studies.
+          </p>
+          <p class="text-slate-400 text-base italic leading-relaxed">
+            I find balance through <b>cooking</b>, <b>travel</b>, <b>working out</b>, and <b>watching movies</b>.
+          </p>
+          <div class="space-y-3">
+            <span class="text-[10px] uppercase font-black text-blue-500 tracking-[0.2em]">My Approach to Data</span>
+            <p class="italic text-slate-500 border-l-4 border-blue-100 pl-6 text-lg leading-relaxed">
+              "I believe that technical skills alone cannot explain the full story. Mastery of domain knowledge is essential to understand the context where data is born, revealing critical insights invisible to raw computation."
+            </p>
+          </div>
         </div>
-    </nav>
-
-    <section id="about" class="pt-40 pb-16 px-6 max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row items-center md:items-center gap-16 md:gap-24">
-            <div class="w-72 h-72 md:w-96 md:h-[28rem] flex-shrink-0 transform hover:scale-105 transition-transform duration-300">
-                <div class="w-full h-full rounded-[4rem] overflow-hidden shadow-2xl border-8 border-white">
-                    <img src="image/me.png" alt="Yongchan Lee" class="w-full h-full object-cover">
-                </div>
-            </div>
-
-            <div class="flex-1 flex flex-col justify-center text-center md:text-left">
-                <div class="space-y-6">
-                    <p class="text-xl md:text-5xl font-bold text-slate-800 leading-tight">
-                        Hi, I am <span class="gradient-text">Yongchan Lee</span> 
-                        <span class="text-lg md:text-3xl font-medium text-slate-400 ml-1">(Ian)</span>
-                    </p>
-                    <p class="text-lg md:text-xl text-slate-600 font-light leading-relaxed">
-                        I am a recent graduate of <b>The College of Wooster</b> with a B.A. in Statistical & Data Science and minor in Environmental Studies.
-                    </p>
-                    <p class="text-slate-400 text-base italic leading-relaxed">
-                        I find balance through <b>cooking</b>, <b>travel</b>, <b>working out</b>, and <b>watching movies</b>.
-                    </p>
-                    <div class="space-y-3">
-                        <span class="text-[10px] uppercase font-black text-blue-500 tracking-[0.2em]">My Approach to Data</span>
-                        <p class="italic text-slate-500 border-l-4 border-blue-100 pl-6 text-lg leading-relaxed">
-                            "I believe that technical skills alone cannot explain the full story. Mastery of domain knowledge is essential to understand the context where data is born, revealing critical insights invisible to raw computation."
-                        </p>
-                    </div>
-                </div>
-                <div class="mt-10 flex justify-center md:justify-start space-x-10 text-3xl text-slate-300">
-                    <a href="mailto:yongchanleee@gmail.com" class="hover:text-blue-600 transition"><i class="fas fa-envelope"></i></a>
-                    <a href="https://linkedin.com/in/yongchanleee" target="_blank" class="hover:text-blue-700 transition"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://www.instagram.com/yyong_cchan/" target="_blank" class="hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
+        <div class="mt-10 flex justify-center md:justify-start space-x-10 text-3xl text-slate-300">
+          <a href="mailto:yongchanleee@gmail.com" class="hover:text-blue-600 transition"><i class="fas fa-envelope"></i></a>
+          <a href="https://linkedin.com/in/yongchanleee" target="_blank" class="hover:text-blue-700 transition"><i class="fab fa-linkedin"></i></a>
+          <a href="https://www.instagram.com/yyong_cchan/" target="_blank" class="hover:text-pink-500 transition"><i class="fab fa-instagram"></i></a>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="education" class="py-16 px-6 bg-slate-50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-black mb-10 tracking-tighter flex items-center underline decoration-blue-600 decoration-4 underline-offset-8">Education</h2>
-            <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col md:flex-row gap-10 items-start md:items-center">
-                <div class="w-24 h-24 md:w-32 md:h-32 flex-shrink-0"><img src="image/woosterlogo.png" alt="Wooster Logo" class="w-full h-full object-contain"></div>
-                <div class="flex-1">
-                    <div class="flex flex-wrap justify-between items-baseline mb-4 text-left"><h3 class="text-3xl font-black text-slate-900">The College of Wooster</h3><span class="text-slate-400 font-bold text-sm uppercase tracking-widest">Aug 2020 – Dec 2025</span></div>
-                    <div class="space-y-4 text-left">
-                        <p class="text-xl font-bold text-blue-600 flex items-center gap-2">B.A. in Statistical & Data Science <span class="bg-amber-500 text-white text-[10px] px-2 py-0.5 rounded uppercase font-black tracking-widest">Department Honor</span></p>
-                        <p class="text-slate-600 font-medium">Minor: Environmental Studies</p>
-                        <div class="flex flex-wrap gap-6 pt-2">
-                            <div class="flex flex-col"><span class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-1">Cumulative GPA</span><span class="text-2xl font-black text-slate-900">3.913 / 4.00</span></div>
-                            <div class="flex flex-col border-l border-slate-200 pl-6"><span class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-1">Location</span><span class="text-lg font-bold text-slate-700">Wooster, OH</span></div>
-                        </div>
-                    </div>
-                </div>
+  <section id="education" class="py-16 px-6 bg-slate-50">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-black mb-10 tracking-tighter flex items-center underline decoration-blue-600 decoration-4 underline-offset-8">Education</h2>
+      <div class="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-sm flex flex-col md:flex-row gap-10 items-start md:items-center">
+        <div class="w-24 h-24 md:w-32 md:h-32 flex-shrink-0"><img src="image/woosterlogo.png" alt="Wooster Logo" class="w-full h-full object-contain"></div>
+        <div class="flex-1">
+          <div class="flex flex-wrap justify-between items-baseline mb-4 text-left">
+            <h3 class="text-3xl font-black text-slate-900">The College of Wooster</h3>
+            <span class="text-slate-400 font-bold text-sm uppercase tracking-widest">Aug 2020 – Dec 2025</span>
+          </div>
+          <div class="space-y-4 text-left">
+            <p class="text-xl font-bold text-blue-600 flex items-center gap-2">
+              B.A. in Statistical & Data Science
+              <span class="bg-amber-500 text-white text-[10px] px-2 py-0.5 rounded uppercase font-black tracking-widest">Department Honor</span>
+            </p>
+            <p class="text-slate-600 font-medium">Minor: Environmental Studies</p>
+            <div class="flex flex-wrap gap-6 pt-2">
+              <div class="flex flex-col">
+                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-1">Cumulative GPA</span>
+                <span class="text-2xl font-black text-slate-900">3.913 / 4.00</span>
+              </div>
+              <div class="flex flex-col border-l border-slate-200 pl-6">
+                <span class="text-[10px] uppercase font-black text-slate-400 tracking-widest mb-1">Location</span>
+                <span class="text-lg font-bold text-slate-700">Wooster, OH</span>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <section id="experience" class="py-24 px-6 bg-white text-left">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-3xl font-black mb-16 tracking-tighter flex items-center underline decoration-blue-600 decoration-4 underline-offset-8">Work Experience</h2>
-    
-            <div class="max-w-4xl mx-auto mb-20">
-                <div class="flex items-center justify-center gap-4 mb-8">
-                    <div class="h-[1px] w-8 bg-slate-200"></div>
-                    <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Impact Metrics</h3>
-                    <div class="h-[1px] w-8 bg-slate-200"></div>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                    <div onclick="showAndHighlight('work-sw', 'sw-risk')" class="cursor-pointer bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-blue-400 transition transform hover:-translate-y-1 group">
-                        <p class="text-4xl font-black text-blue-600 mb-1 group-hover:scale-110 transition-transform">90%</p>
-                        <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">Prediction Accuracy</p>
-                    </div>
-                    <div onclick="showAndHighlight('work-sw', 'sw-recovery')" class="cursor-pointer bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-blue-400 transition transform hover:-translate-y-1 group">
-                        <p class="text-4xl font-black text-blue-600 mb-1 group-hover:scale-110 transition-transform">30%</p>
-                        <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">Data Recovered</p>
-                    </div>
-                    <div onclick="showAndHighlight('work-unist', 'unist-r2')" class="cursor-pointer bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-blue-400 transition transform hover:-translate-y-1 group">
-                        <p class="text-4xl font-black text-blue-600 mb-1 group-hover:scale-110 transition-transform">0.15</p>
-                        <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">R² Improvement</p>
-                    </div>
-                </div>
-            </div>
-    
-            <div class="space-y-12">
-                
-                <div class="relative pl-12 border-l-2 border-slate-200">
-                    <div onclick="toggleWorkDetail('work-sw')" class="flex items-center gap-6 cursor-pointer group">
-                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/SWpng.png" alt="Sherwin" class="w-full h-full object-contain"></div>
-                        <div class="flex-1">
-                            <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
-                                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">Sherwin-Williams</h3>
-                                <span class="text-slate-400 font-bold text-sm uppercase">May 2025 – Dec 2025</span>
-                            </div>
-                            <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
-                                Intern, Data Analyst <i id="icon-work-sw" class="fas fa-plus-circle opacity-30"></i>
-                            </p>
-                        </div>
-                    </div>
-                    <div id="work-sw" class="hidden mt-6 overflow-hidden transition-all duration-500">
-                        <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
-                            <li id="sw-kpi" class="p-2 rounded-lg transition-all duration-500">• Translated an ambiguous risk forecasting request into a clearly defined KPI by formalizing risk as expected financial loss, integrating machinery performance and financial datasets.</li>
-                            <li id="sw-recovery" class="p-2 rounded-lg transition-all duration-500">• Resolved data granularity constraints through data mapping, recovering 30% of unusable data to enable work-center-level analysis.</li>
-                            <li id="sw-risk" class="p-2 rounded-lg transition-all duration-500">• Built and evaluated a Python- and SQL-based risk analysis model, achieving 90% accuracy (±5%) in risk tier prediction.</li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <div class="relative pl-12 border-l-2 border-slate-200">
-                    <div onclick="toggleWorkDetail('work-unist')" class="flex items-center gap-6 cursor-pointer group">
-                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/UNIST.png" alt="UNIST" class="w-full h-full object-contain"></div>
-                        <div class="flex-1">
-                            <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
-                                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">UNIST (IRIS LAB)</h3>
-                                <span class="text-slate-400 font-bold text-sm uppercase">Jun 2024 – Aug 2024</span>
-                            </div>
-                            <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
-                                Intern, Research Analyst <i id="icon-work-unist" class="fas fa-plus-circle opacity-30"></i>
-                            </p>
-                        </div>
-                    </div>
-                    <div id="work-unist" class="hidden mt-6 overflow-hidden transition-all duration-500">
-                        <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
-                            <li id="unist-pipeline" class="p-2 rounded-lg transition-all duration-500">• Built an automated Python pipeline using NASA APIs to ingest, clean, and integrate large-scale environmental datasets, enabling scalable multi-dimensional analysis.</li>
-                            <li id="unist-eng" class="p-2 rounded-lg transition-all duration-500">• Designed an analysis-ready dataset by engineering environmental and vegetation features aligned with crop growth stages.</li>
-                            <li id="unist-r2" class="p-2 rounded-lg transition-all duration-500">• Validated the analytical value of the engineered features through regression modeling, achieving a 0.15 R² improvement over published benchmarks.</li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <div class="relative pl-12 border-l-2 border-slate-200">
-                    <div onclick="toggleWorkDetail('work-wooster')" class="flex items-center gap-6 cursor-pointer group">
-                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/woosterlogo.png" alt="Wooster" class="w-full h-full object-contain"></div>
-                        <div class="flex-1">
-                            <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
-                                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">The College of Wooster</h3>
-                                <span class="text-slate-400 font-bold text-sm uppercase">Aug 2025 – Dec 2025</span>
-                            </div>
-                            <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
-                                Teaching Assistant <i id="icon-work-wooster" class="fas fa-plus-circle opacity-30"></i>
-                            </p>
-                        </div>
-                    </div>
-                    <div id="work-wooster" class="hidden mt-6 overflow-hidden transition-all duration-500">
-                        <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
-                            <li id="wooster-stat" class="p-2 rounded-lg transition-all duration-500">• Supported instruction in regression, classification, and statistical inference, emphasizing assumptions, interpretation, and data integrity.</li>
-                            <li id="wooster-flow" class="p-2 rounded-lg transition-all duration-500">• Guided students through end-to-end data analysis workflows, including data cleaning, exploratory analysis, visualization, and result validation.</li>
-                        </ul>
-                    </div>
-                </div>
-    
-                <div class="relative pl-12 border-l-2 border-slate-200">
-                    <div onclick="toggleWorkDetail('work-roka')" class="flex items-center gap-6 cursor-pointer group">
-                        <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/roka.jpeg" alt="ROK Army" class="w-full h-full object-contain"></div>
-                        <div class="flex-1">
-                            <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
-                                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">Republic of Korea Army</h3>
-                                <span class="text-slate-400 font-bold text-sm uppercase">Oct 2021 – Apr 2023</span>
-                            </div>
-                            <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
-                                Signaler <i id="icon-work-roka" class="fas fa-plus-circle opacity-30"></i>
-                            </p>
-                        </div>
-                    </div>
-                    <div id="work-roka" class="hidden mt-6 overflow-hidden transition-all duration-500">
-                        <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
-                            <li id="roka-setup" class="p-2 rounded-lg transition-all duration-500">• Deployed and maintained tactical communication networks using TRC-512K equipment; reduced network setup time by 33% (15 → under 10 minutes) through optimized antenna assembly and signal configuration.</li>
-                            <li id="roka-award" class="p-2 rounded-lg transition-all duration-500">• Earned a Battalion Training Commendation for exceptional performance and operational readiness during training exercises.</li>
-                            <li id="roka-rank" class="p-2 rounded-lg transition-all duration-500">• Completed Army training camp ranked 4th overall, demonstrating strong performance across technical, written, and physical evaluations.</li>
-                            <li id="roka-counselor" class="p-2 rounded-lg transition-all duration-500">• Served concurrently as a Military Counselor, conducting weekly one-on-one sessions and supporting approximately 50% of company personnel, improving adaptation, morale, and unit cohesion.</li>
-                        </ul>
-                    </div>
-                </div>
-    
-            </div>
+  <section id="experience" class="py-24 px-6 bg-white text-left">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-3xl font-black mb-16 tracking-tighter flex items-center underline decoration-blue-600 decoration-4 underline-offset-8">Work Experience</h2>
+
+      <div class="max-w-4xl mx-auto mb-20">
+        <div class="flex items-center justify-center gap-4 mb-8">
+          <div class="h-[1px] w-8 bg-slate-200"></div>
+          <h3 class="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Impact Metrics</h3>
+          <div class="h-[1px] w-8 bg-slate-200"></div>
         </div>
-    </section>
-    
-    <style>
-        .highlight-bullet {
-            background-color: #eff6ff !important; 
-            border-left: 4px solid #2563eb !important;
-            color: #1e40af !important;
-            font-weight: 600 !important;
-        }
-    </style>
-    
-    <script>
-        let activeTimers = {};
-    
-        function toggleWorkDetail(id) {
-            const detail = document.getElementById(id);
-            const icon = document.getElementById('icon-' + id);
-            if (detail.classList.contains('hidden')) {
-                detail.classList.remove('hidden');
-                if(icon) icon.className = 'fas fa-minus-circle text-blue-600';
-                resetTimer(id);
-            } else {
-                closeWorkDetail(id);
-            }
-        }
-    
-        function closeWorkDetail(id) {
-            const detail = document.getElementById(id);
-            const icon = document.getElementById('icon-' + id);
-            if (detail) {
-                detail.classList.add('hidden');
-                if(icon) icon.className = 'fas fa-plus-circle opacity-30';
-            }
-            clearTimeout(activeTimers[id]);
-        }
-    
-        function resetTimer(id) {
-            clearTimeout(activeTimers[id]);
-            activeTimers[id] = setTimeout(() => {
-                closeWorkDetail(id);
-            }, 30000);
-        }
-    
-        function showAndHighlight(workId, bulletId) {
-            const detail = document.getElementById(workId);
-            if (detail.classList.contains('hidden')) {
-                toggleWorkDetail(workId);
-            } else {
-                resetTimer(workId); 
-            }
-            const bullet = document.getElementById(bulletId);
-            bullet.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            bullet.classList.add('highlight-bullet');
-            setTimeout(() => {
-                bullet.classList.remove('highlight-bullet');
-            }, 4000);
-        }
-    </script>
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+          <div onclick="showAndHighlight('work-sw', 'sw-risk')" class="cursor-pointer bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-blue-400 transition transform hover:-translate-y-1 group">
+            <p class="text-4xl font-black text-blue-600 mb-1 group-hover:scale-110 transition-transform">90%</p>
+            <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">Prediction Accuracy</p>
+          </div>
+          <div onclick="showAndHighlight('work-sw', 'sw-recovery')" class="cursor-pointer bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-blue-400 transition transform hover:-translate-y-1 group">
+            <p class="text-4xl font-black text-blue-600 mb-1 group-hover:scale-110 transition-transform">30%</p>
+            <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">Data Recovered</p>
+          </div>
+          <div onclick="showAndHighlight('work-unist', 'unist-r2')" class="cursor-pointer bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:border-blue-400 transition transform hover:-translate-y-1 group">
+            <p class="text-4xl font-black text-blue-600 mb-1 group-hover:scale-110 transition-transform">0.15</p>
+            <p class="text-[10px] text-slate-400 uppercase font-black tracking-widest">R² Improvement</p>
+          </div>
+        </div>
+      </div>
 
-    <section id="projects" class="py-24 px-6 bg-slate-50 overflow-hidden">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-black mb-4 text-center tracking-tighter">Projects</h2>
-            <p class="text-center text-slate-400 mb-16 font-light italic text-sm">Click each card to explore the full analytical.</p>
-            
-            <div class="relative px-4 md:px-20 pt-12"> 
-                <div class="swiper project-swiper pb-20 !overflow-visible">
-                    <div class="swiper-wrapper">
-                        
-                        <div class="swiper-slide">
-                            <div onclick="openModal('modal-thesis')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
-                                <div class="flex-grow">
-                                    <div class="text-blue-600 text-3xl mb-6"><i class="fas fa-seedling"></i></div>
-                                    <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight">Crop Yield Prediction with Climate Factors</h3>
-                                    <p class="text-slate-500 text leading-normal">Predicting corn, soybean, and wheat yields via XGBoost and SHAP to strengthen food security under climate volatility.</p>
-                                </div>
-                                <div class="mt-auto">
-                                    <div class="flex flex-wrap gap-1.5 mb-6">
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">XGBoost</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">SHAP</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Machine Learning</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Climate Data</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Agriculture</span>
-                                    </div>
-                                    <div class="flex items-center text-[10px] font-black text-blue-600 tracking-widest uppercase">
-                                        Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="swiper-slide">
-                            <div onclick="openModal('modal-epl')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
-                                <div class="flex-grow">
-                                    <div class="text-indigo-600 text-3xl mb-6"><i class="fas fa-running"></i></div>
-                                    <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight">EPL Athlete Performance Model</h3>
-                                    <p class="text-slate-500 text leading-normal">Modeling the impact of age on Premier League player productivity through multiple linear regression and continental clustering.</p>
-                                </div>
-                                <div class="mt-auto">
-                                    <div class="flex flex-wrap gap-1.5 mb-6">
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Regression</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">R Language</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">ANOVA / T-Test</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">VIF Test</span>
-                                    </div>
-                                    <div class="flex items-center text-[10px] font-black text-indigo-600 tracking-widest uppercase">
-                                        Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="swiper-slide">
-                            <div onclick="openModal('modal-life')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
-                                <div class="flex-grow">
-                                    <div class="text-emerald-600 text-3xl mb-6"><i class="fas fa-heartbeat"></i></div>
-                                    <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight">Global Life Expectancy Analysis</h3>
-                                    <p class="text-slate-500 text leading-normal">Analyzing the correlation between national dietary patterns and global life expectancy using multidimensional Tableau dashboards.</p>
-                                </div>
-                                <div class="mt-auto">
-                                    <div class="flex flex-wrap gap-1.5 mb-6">
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Tableau</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Nutritional Analysis</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Visual Analytics</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Global Health</span>
-                                    </div>
-                                    <div class="flex items-center text-[10px] font-black text-emerald-600 tracking-widest uppercase">
-                                        Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                        <div class="swiper-slide">
-                            <div onclick="openModal('modal-carbon')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
-                                <div class="flex-grow">
-                                    <div class="text-amber-600 text-3xl mb-6"><i class="fas fa-smog"></i></div>
-                                    <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight text-left">NYC Large Office Carbon Accounting & LL97 Risk Benchmark</h3>
-                                    <p class="text-slate-500 text leading-normal text-left">Built a Scope 1–2 GHG emissions inventory for NYC large offices (≥200k ft²) using LL84/97 data, benchmarking a Rockefeller-style portfolio.</p>
-                                </div>
-                                <div class="mt-auto">
-                                    <div class="flex flex-wrap gap-1.5 mb-6">
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Sustainability</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">LL97 Compliance</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Carbon Inventory</span>
-                                        <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Tableau</span>
-                                    </div>
-                                    <div class="flex items-center text-[10px] font-black text-amber-600 tracking-widest uppercase">
-                                        Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-    
-                    </div>
-                    <div class="swiper-pagination"></div>
+      <div class="space-y-12">
+
+        <div class="relative pl-12 border-l-2 border-slate-200">
+          <div onclick="toggleWorkDetail('work-sw')" class="flex items-center gap-6 cursor-pointer group">
+            <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/SWpng.png" alt="Sherwin" class="w-full h-full object-contain"></div>
+            <div class="flex-1">
+              <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
+                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">Sherwin-Williams</h3>
+                <span class="text-slate-400 font-bold text-sm uppercase">May 2025 – Dec 2025</span>
+              </div>
+              <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
+                Intern, Data Analyst <i id="icon-work-sw" class="fas fa-plus-circle opacity-30"></i>
+              </p>
+            </div>
+          </div>
+          <div id="work-sw" class="hidden mt-6 overflow-hidden transition-all duration-500">
+            <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
+              <li id="sw-kpi" class="p-2 rounded-lg transition-all duration-500">• Translated an ambiguous risk forecasting request into a clearly defined KPI by formalizing risk as expected financial loss, integrating machinery performance and financial datasets.</li>
+              <li id="sw-recovery" class="p-2 rounded-lg transition-all duration-500">• Resolved data granularity constraints through data mapping, recovering 30% of unusable data to enable work-center-level analysis.</li>
+              <li id="sw-risk" class="p-2 rounded-lg transition-all duration-500">• Built and evaluated a Python- and SQL-based risk analysis model, achieving 90% accuracy (±5%) in risk tier prediction.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative pl-12 border-l-2 border-slate-200">
+          <div onclick="toggleWorkDetail('work-unist')" class="flex items-center gap-6 cursor-pointer group">
+            <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/UNIST.png" alt="UNIST" class="w-full h-full object-contain"></div>
+            <div class="flex-1">
+              <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
+                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">UNIST (IRIS LAB)</h3>
+                <span class="text-slate-400 font-bold text-sm uppercase">Jun 2024 – Aug 2024</span>
+              </div>
+              <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
+                Intern, Research Analyst <i id="icon-work-unist" class="fas fa-plus-circle opacity-30"></i>
+              </p>
+            </div>
+          </div>
+          <div id="work-unist" class="hidden mt-6 overflow-hidden transition-all duration-500">
+            <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
+              <li id="unist-pipeline" class="p-2 rounded-lg transition-all duration-500">• Built an automated Python pipeline using NASA APIs to ingest, clean, and integrate large-scale environmental datasets, enabling scalable multi-dimensional analysis.</li>
+              <li id="unist-eng" class="p-2 rounded-lg transition-all duration-500">• Designed an analysis-ready dataset by engineering environmental and vegetation features aligned with crop growth stages.</li>
+              <li id="unist-r2" class="p-2 rounded-lg transition-all duration-500">• Validated the analytical value of the engineered features through regression modeling, achieving a 0.15 R² improvement over published benchmarks.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative pl-12 border-l-2 border-slate-200">
+          <div onclick="toggleWorkDetail('work-wooster')" class="flex items-center gap-6 cursor-pointer group">
+            <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/woosterlogo.png" alt="Wooster" class="w-full h-full object-contain"></div>
+            <div class="flex-1">
+              <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
+                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">The College of Wooster</h3>
+                <span class="text-slate-400 font-bold text-sm uppercase">Aug 2025 – Dec 2025</span>
+              </div>
+              <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
+                Teaching Assistant <i id="icon-work-wooster" class="fas fa-plus-circle opacity-30"></i>
+              </p>
+            </div>
+          </div>
+          <div id="work-wooster" class="hidden mt-6 overflow-hidden transition-all duration-500">
+            <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
+              <li id="wooster-stat" class="p-2 rounded-lg transition-all duration-500">• Supported instruction in regression, classification, and statistical inference, emphasizing assumptions, interpretation, and data integrity.</li>
+              <li id="wooster-flow" class="p-2 rounded-lg transition-all duration-500">• Guided students through end-to-end data analysis workflows, including data cleaning, exploratory analysis, visualization, and result validation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="relative pl-12 border-l-2 border-slate-200">
+          <div onclick="toggleWorkDetail('work-roka')" class="flex items-center gap-6 cursor-pointer group">
+            <div class="w-14 h-14 bg-slate-50 rounded-2xl flex-shrink-0 border border-slate-100 p-2"><img src="image/roka.jpeg" alt="ROK Army" class="w-full h-full object-contain"></div>
+            <div class="flex-1">
+              <div class="flex flex-wrap justify-between items-baseline mb-1 text-slate-900">
+                <h3 class="text-2xl font-bold group-hover:text-blue-600 transition-colors">Republic of Korea Army</h3>
+                <span class="text-slate-400 font-bold text-sm uppercase">Oct 2021 – Apr 2023</span>
+              </div>
+              <p class="text-blue-600 font-black uppercase text-xs tracking-widest italic flex items-center gap-2">
+                Signaler <i id="icon-work-roka" class="fas fa-plus-circle opacity-30"></i>
+              </p>
+            </div>
+          </div>
+          <div id="work-roka" class="hidden mt-6 overflow-hidden transition-all duration-500">
+            <ul class="space-y-3 text-slate-600 text-lg font-light leading-relaxed">
+              <li id="roka-setup" class="p-2 rounded-lg transition-all duration-500">• Deployed and maintained tactical communication networks using TRC-512K equipment; reduced network setup time by 33% (15 → under 10 minutes) through optimized antenna assembly and signal configuration.</li>
+              <li id="roka-award" class="p-2 rounded-lg transition-all duration-500">• Earned a Battalion Training Commendation for exceptional performance and operational readiness during training exercises.</li>
+              <li id="roka-rank" class="p-2 rounded-lg transition-all duration-500">• Completed Army training camp ranked 4th overall, demonstrating strong performance across technical, written, and physical evaluations.</li>
+              <li id="roka-counselor" class="p-2 rounded-lg transition-all duration-500">• Served concurrently as a Military Counselor, conducting weekly one-on-one sessions and supporting approximately 50% of company personnel, improving adaptation, morale, and unit cohesion.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .highlight-bullet {
+      background-color: #eff6ff !important;
+      border-left: 4px solid #2563eb !important;
+      color: #1e40af !important;
+      font-weight: 600 !important;
+    }
+  </style>
+
+  <script>
+    let activeTimers = {};
+
+    function toggleWorkDetail(id) {
+      const detail = document.getElementById(id);
+      const icon = document.getElementById('icon-' + id);
+      if (detail.classList.contains('hidden')) {
+        detail.classList.remove('hidden');
+        if(icon) icon.className = 'fas fa-minus-circle text-blue-600';
+        resetTimer(id);
+      } else {
+        closeWorkDetail(id);
+      }
+    }
+
+    function closeWorkDetail(id) {
+      const detail = document.getElementById(id);
+      const icon = document.getElementById('icon-' + id);
+      if (detail) {
+        detail.classList.add('hidden');
+        if(icon) icon.className = 'fas fa-plus-circle opacity-30';
+      }
+      clearTimeout(activeTimers[id]);
+    }
+
+    function resetTimer(id) {
+      clearTimeout(activeTimers[id]);
+      activeTimers[id] = setTimeout(() => {
+        closeWorkDetail(id);
+      }, 30000);
+    }
+
+    function showAndHighlight(workId, bulletId) {
+      const detail = document.getElementById(workId);
+      if (detail.classList.contains('hidden')) {
+        toggleWorkDetail(workId);
+      } else {
+        resetTimer(workId);
+      }
+      const bullet = document.getElementById(bulletId);
+      bullet.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      bullet.classList.add('highlight-bullet');
+      setTimeout(() => {
+        bullet.classList.remove('highlight-bullet');
+      }, 4000);
+    }
+  </script>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- Projects (UPDATED: min-h + flex align) -->
+  <section id="projects" class="py-24 px-6 bg-slate-50 overflow-hidden min-h-[100vh] flex items-center">
+    <div class="max-w-7xl mx-auto w-full">
+      <h2 class="text-4xl font-black mb-4 text-center tracking-tighter">Projects</h2>
+      <p class="text-center text-slate-400 mb-16 font-light italic text-sm">Click each card to explore the full analytical.</p>
+
+      <div class="relative px-4 md:px-20 pt-12">
+        <div class="swiper project-swiper pb-20 !overflow-visible">
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div onclick="openModal('modal-thesis')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
+                <div class="flex-grow">
+                  <div class="text-blue-600 text-3xl mb-6"><i class="fas fa-seedling"></i></div>
+                  <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight">Crop Yield Prediction with Climate Factors</h3>
+                  <p class="text-slate-500 text leading-normal">Predicting corn, soybean, and wheat yields via XGBoost and SHAP to strengthen food security under climate volatility.</p>
                 </div>
-    
-                <div class="swiper-button-next !-right-2 md:!-right-10 text-blue-600 transition-all"></div>
-                <div class="swiper-button-prev !-left-2 md:!-left-10 text-blue-600 transition-all"></div>
+                <div class="mt-auto">
+                  <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">XGBoost</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">SHAP</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Machine Learning</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Climate Data</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Agriculture</span>
+                  </div>
+                  <div class="flex items-center text-[10px] font-black text-blue-600 tracking-widest uppercase">
+                    Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-    </section>
-    
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script>
-        const swiper = new Swiper('.project-swiper', {
-            effect: 'coverflow',
-            grabCursor: true,
-            centeredSlides: true, // 현재 슬라이드를 중앙에 배치
-            initialSlide: 0,
-            loop: false, // 리미트 기능 활성화
-            speed: 600,  // 이동 속도 (부드럽게)
-            coverflowEffect: {
-                rotate: 5,     // 회전 각도를 낮추면 더 안정적입니다.
-                stretch: 0,
-                depth: 100,
-                modifier: 2,   // 효과 강도
-                slideShadows: false,
-            },
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-            // 화면 크기에 따른 카드 개수 고정 (점프 현상 해결의 핵심)
-            breakpoints: {
-                320: { slidesPerView: 1.2, spaceBetween: 20 }, // 모바일
-                768: { slidesPerView: 2, spaceBetween: 30 },   // 태블릿
-                1024: { slidesPerView: 3, spaceBetween: 40 }   // 데스크탑 (3개 고정)
-            }
-        });
-    </script>
-    
-    <style>
-        .project-swiper {
-    overflow: visible !important; /* 호버 시 카드가 잘리지 않게 함 */
-    padding-top: 50px !important;
-}
 
-.swiper-slide {
-    width: 100%; 
-    /* max-width를 주어 카드가 너무 커지지 않게 제한합니다. */
-    max-width: 380px; 
-    transition: all 0.4s ease;
-    opacity: 0.3; /* 옆에 있는 카드는 흐리게 */
-    transform: scale(0.8); /* 옆에 있는 카드는 작게 */
-}
-
-/* 중앙에 있는 카드만 뚜렷하고 크게 보이게 함 */
-.swiper-slide-active {
-    opacity: 1;
-    transform: scale(1.05);
-    z-index: 10;
-}
-
-/* 카드 호버 시 위로 뜨는 효과 */
-.card-hover:hover {
-    transform: translateY(-20px) !important;
-}
-    </style>
-
-    <section id="skills" class="py-24 bg-slate-900 text-white px-6 text-center">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-3xl font-black mb-20 uppercase text-blue-400 border-b border-blue-900 pb-6 inline-block tracking-widest text-center">Technical Tool</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-left">
-                <div class="p-8 bg-white/5 border border-white/10 rounded-3xl"><h4 class="text-blue-400 mb-6 uppercase text-[10px] font-black tracking-widest border-b border-white/10 pb-2 italic">Programming</h4><ul class="space-y-3 opacity-70 font-light"><li>Python, R, SQL</li><li>Scikit-learn, Pandas</li><li>XGBoost & SHAP</li></ul></div>
-                <div class="p-8 bg-white/5 border border-white/10 rounded-3xl"><h4 class="text-blue-400 mb-6 uppercase text-[10px] font-black tracking-widest border-b border-white/10 pb-2 italic">Analytics</h4><ul class="space-y-3 opacity-70 font-light"><li>EDA & Regression</li><li>Time-Series Analysis</li><li>Model XAI & ANOVA</li></ul></div>
-                <div class="p-8 bg-white/5 border border-white/10 rounded-3xl"><h4 class="text-blue-400 mb-6 uppercase text-[10px] font-black tracking-widest border-b border-white/10 pb-2 italic">Visualization</h4><ul class="space-y-3 opacity-70 font-light"><li>Tableau Desktop</li><li>Microsoft Excel</li><li>Insight Reporting</li></ul></div>
-                <div class="p-8 bg-white/5 border border-white/10 rounded-3xl"><h4 class="text-blue-400 mb-6 uppercase text-[10px] font-black tracking-widest border-b border-white/10 pb-2 italic">Data Prep</h4><ul class="space-y-3 opacity-70 font-light"><li>API Integration</li><li>Automated Pipelines</li><li>Feature Engineering</li></ul></div>
+            <div class="swiper-slide">
+              <div onclick="openModal('modal-epl')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
+                <div class="flex-grow">
+                  <div class="text-indigo-600 text-3xl mb-6"><i class="fas fa-running"></i></div>
+                  <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight">EPL Athlete Performance Model</h3>
+                  <p class="text-slate-500 text leading-normal">Modeling the impact of age on Premier League player productivity through multiple linear regression and continental clustering.</p>
+                </div>
+                <div class="mt-auto">
+                  <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Regression</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">R Language</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">ANOVA / T-Test</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">VIF Test</span>
+                  </div>
+                  <div class="flex items-center text-[10px] font-black text-indigo-600 tracking-widest uppercase">
+                    Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-    </section>
 
-    <footer class="py-20 text-center border-t border-slate-100">
-        <p class="font-black tracking-[0.5em] mb-4 text-slate-900 uppercase">Yongchan Lee</p>
-        
-        <p class="text-[9px] text-slate-400 uppercase tracking-widest italic mb-8">Statistical Analysis & Data Science</p>
-        
-        <p class="text-[10px] text-slate-300 uppercase tracking-[0.2em]">
-            © 2026 Yongchan Lee. All Rights Reserved.
+            <div class="swiper-slide">
+              <div onclick="openModal('modal-life')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
+                <div class="flex-grow">
+                  <div class="text-emerald-600 text-3xl mb-6"><i class="fas fa-heartbeat"></i></div>
+                  <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight">Global Life Expectancy Analysis</h3>
+                  <p class="text-slate-500 text leading-normal">Analyzing the correlation between national dietary patterns and global life expectancy using multidimensional Tableau dashboards.</p>
+                </div>
+                <div class="mt-auto">
+                  <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Tableau</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Nutritional Analysis</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Visual Analytics</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Global Health</span>
+                  </div>
+                  <div class="flex items-center text-[10px] font-black text-emerald-600 tracking-widest uppercase">
+                    Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div onclick="openModal('modal-carbon')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
+                <div class="flex-grow">
+                  <div class="text-amber-600 text-3xl mb-6"><i class="fas fa-smog"></i></div>
+                  <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight text-left">NYC Large Office Carbon Accounting & LL97 Risk Benchmark</h3>
+                  <p class="text-slate-500 text leading-normal text-left">Built a Scope 1–2 GHG emissions inventory for NYC large offices (≥200k ft²) using LL84/97 data, benchmarking a Rockefeller-style portfolio.</p>
+                </div>
+                <div class="mt-auto">
+                  <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Sustainability</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">LL97 Compliance</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Carbon Inventory</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Tableau</span>
+                  </div>
+                  <div class="flex items-center text-[10px] font-black text-amber-600 tracking-widest uppercase">
+                    Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="swiper-button-next !-right-2 md:!-right-10 text-blue-600 transition-all"></div>
+        <div class="swiper-button-prev !-left-2 md:!-left-10 text-blue-600 transition-all"></div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    /* UPDATED Swiper config */
+    const swiper = new Swiper('.project-swiper', {
+      effect: 'slide',
+      centeredSlides: true,
+      loop: false,
+      speed: 650,
+      grabCursor: true,
+
+      preventClicks: false,
+      preventClicksPropagation: false,
+
+      slidesPerView: 3,
+      spaceBetween: 40,
+
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+
+      breakpoints: {
+        320:  { slidesPerView: 1.15, spaceBetween: 18 },
+        640:  { slidesPerView: 1.7,  spaceBetween: 22 },
+        768:  { slidesPerView: 2.2,  spaceBetween: 28 },
+        1024: { slidesPerView: 3,    spaceBetween: 40 },
+      },
+    });
+  </script>
+
+  <section id="skills" class="py-24 bg-slate-900 text-white px-6 text-center">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-3xl font-black mb-20 uppercase text-blue-400 border-b border-blue-900 pb-6 inline-block tracking-widest text-center">Technical Tool</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-sm text-left">
+        <div class="p-8 bg-white/5 border border-white/10 rounded-3xl">
+          <h4 class="text-blue-400 mb-6 uppercase text-[10px] font-black tracking-widest border-b border-white/10 pb-2 italic">Programming</h4>
+          <ul class="space-y-3 opacity-70 font-light">
+            <li>Python, R, SQL</li><li>Scikit-learn, Pandas</li><li>XGBoost & SHAP</li>
+          </ul>
+        </div>
+        <div class="p-8 bg-white/5 border border-white/10 rounded-3xl">
+          <h4 class="text-blue-400 mb-6 uppercase text-[10px] font-black tracking-widest border-b border-white/10 pb-2 italic">Analytics</h4>
+          <ul class="space-y-3 opacity-70 font-light">
+            <li>EDA & Regression</li><li>Time-Series Analysis</li><li>Model XAI & ANOVA</li>
+          </ul>
+        </div>
+        <div class="p-8 bg-white/5 border border-white/10 rounded-3xl">
+          <h4 class="text-blue-400 mb-6 uppercase text-[10px] font-black tracking-widest border-b border-white/10 pb-2 italic">Visualization</h4>
+          <ul class="space-y-3 opacity-70 font-light">
+            <li>Tableau Desktop</li><li>Microsoft Excel</li><li>Insight Reporting</li>
+          </ul>
+        </div>
+        <div class="p-8 bg-white/5 border border-white/10 rounded-3xl">
+          <h4 class="text-blue-400 mb-6 uppercase text-[10px] font-black tracking-widest border-b border-white/10 pb-2 italic">Data Prep</h4>
+          <ul class="space-y-3 opacity-70 font-light">
+            <li>API Integration</li><li>Automated Pipelines</li><li>Feature Engineering</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-20 text-center border-t border-slate-100">
+    <p class="font-black tracking-[0.5em] mb-4 text-slate-900 uppercase">Yongchan Lee</p>
+    <p class="text-[9px] text-slate-400 uppercase tracking-widest italic mb-8">Statistical Analysis & Data Science</p>
+    <p class="text-[10px] text-slate-300 uppercase tracking-[0.2em]">© 2026 Yongchan Lee. All Rights Reserved.</p>
+  </footer>
+
+  <div id="lightbox" class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/90 backdrop-blur-md cursor-zoom-out" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" class="max-w-[95%] max-h-[90vh] rounded-xl shadow-2xl object-contain border-4 border-white/10">
+    <div class="absolute top-8 right-8 text-white text-4xl cursor-pointer hover:text-slate-300 transition">&times;</div>
+  </div>
+
+  <!-- MODALS (UNCHANGED FROM YOUR ORIGINAL) -->
+<div id="modal-thesis" class="modal fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+<div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative">
+    <button onclick="closeModal('modal-thesis')" class="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-full transition-all group">
+    <i class="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
+    </button>
+
+    <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
+    <!-- Header -->
+    <div class="mb-12">
+        <span class="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">
+        Machine Learning Research
+        </span>
+        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">
+        Predicting Crop Yield with <br class="hidden md:block">Climate Factors
+        </h2>
+        <p class="text-xl text-slate-500 font-light leading-relaxed italic">
+        County-level yield forecasting with interpretable ML to support climate-resilient agricultural decision-making.
         </p>
-    </footer>
+    </div>
 
-    <div id="lightbox" class="fixed inset-0 z-[200] hidden items-center justify-center bg-black/90 backdrop-blur-md cursor-zoom-out" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" class="max-w-[95%] max-h-[90vh] rounded-xl shadow-2xl object-contain border-4 border-white/10">
-        <div class="absolute top-8 right-8 text-white text-4xl cursor-pointer hover:text-slate-300 transition">&times;</div>
-    </div>
-    
-    <div id="modal-thesis" class="modal fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative">
-            <button onclick="closeModal('modal-thesis')" class="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-full transition-all group">
-                <i class="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
-            </button>
-    
-            <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
-                <div class="mb-12">
-                    <span class="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">Machine Learning Research</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">Predicting Crop Yield with <br class="hidden md:block">Climate Factors</h2>
-                    <p class="text-xl text-slate-500 font-light leading-relaxed italic">Empowering data-driven agricultural policies via county-level climate modeling.</p>
-                </div>
-    
-                <div class="space-y-6 mb-16">
-                    <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/ISflowchart.png')">
-                        <img src="image/ISflowchart.png" alt="Model Logic" class="w-full h-auto">
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/ISresult.png')">
-                            <img src="image/ISresult.png" alt="Results" class="w-full h-auto">
-                        </div>
-                        <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/ISshap.png')">
-                            <img src="image/ISshap.png" alt="SHAP" class="w-full h-auto">
-                        </div>
-                    </div>
-                </div>
-    
-                <div class="space-y-16">
-                    <section>
-                        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-px bg-blue-100"></span> 01. Project Purpose
-                        </h3>
-                        <div class="pl-11 border-l-2 border-slate-100">
-                            <p class="text-slate-600 text-lg leading-normal">
-                                Aimed to ensure food security as the global population and climate instability continue to rise. This study predicts corn, soybean, and wheat yields to empower proactive agricultural intervention.
-                            </p>
-                        </div>
-                    </section>
-    
-                    <section>
-                        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3"><span class="w-8 h-px bg-blue-100"></span> 02. Methodology</h3>
-                        <div class="pl-11 border-l-2 border-slate-100 space-y-8">
-                            <div>
-                                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-database text-blue-500"></i> Data Integration</h4>
-                                <p class="text-slate-500 text-base leading-normal font-light">Utilized 6 years of county-level data for 5 variables: Temperature, Precipitation, Solar Radiation, CO₂, and Soil Moisture.</p>
-                            </div>
-                            <div>
-                                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-brain text-blue-500"></i> XGBoost & SHAP</h4>
-                                <p class="text-slate-500 text-base leading-normal font-light">Trained independent XGBoost models for each crop and implemented the SHAP framework for interpretability.</p>
-                            </div>
-                        </div>
-                    </section>
-    
-                    <section>
-                        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-px bg-blue-100"></span> 03. Results & Insights
-                        </h3>
-                        <div class="pl-11 border-l-2 border-slate-100">
-                            <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 mb-8">
-                                <p class="text-slate-600 leading-normal font-light">Achieved high predictive accuracy with R² values of <strong>0.76 (Corn)</strong> and <strong>0.81 (Soybean)</strong>. SHAP confirmed summer temp and precip as primary predictors.</p>
-                            </div>
-                            <a href="paper/IS Thesis - YL.pdf" target="_blank" class="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl hover:bg-blue-700 transition shadow-lg shadow-blue-200 font-bold uppercase tracking-widest text-xs">
-                                <i class="fas fa-file-pdf"></i> View Full Thesis
-                            </a>
-                        </div>
-                    </section>
-                </div>
-            </div>
+    <!-- Visuals -->
+    <div class="space-y-6 mb-16">
+        <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/ISflowchart.png')">
+        <img src="image/ISflowchart.png" alt="Model Logic" class="w-full h-auto">
         </div>
-    </div>
-    
-    <div id="modal-epl" class="modal fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative">
-            <button onclick="closeModal('modal-epl')" class="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-full transition-all group">
-                <i class="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
-            </button>
-    
-            <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
-                <div class="mb-12">
-                    <span class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">Sports Analytics</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">EPL Athlete Performance <br class="hidden md:block">Optimization Model</h2>
-                    <p class="text-xl text-slate-500 font-light leading-relaxed italic">Quantifying the impact of age on Premier League productivity (Goals/Assists per 90).</p>
-                </div>
-    
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-                    <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/EPLModels.png')">
-                        <img src="image/EPLModels.png" alt="Model Table" class="w-full h-full object-cover">
-                    </div>
-                    <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/EPLResidual.png')">
-                        <img src="image/EPLResidual.png" alt="Residuals" class="w-full h-full object-cover">
-                    </div>
-                </div>
-    
-                <div class="space-y-16">
-                    <section>
-                        <h3 class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-px bg-indigo-100"></span> 01. Project Purpose
-                        </h3>
-                        <div class="pl-11 border-l-2 border-slate-100">
-                            <p class="text-slate-600 text-lg leading-normal">
-                                Investigated whether age significantly impacts on-field performance outcomes (NP G+A per 90) within the English Premier League for the 23/24 season.
-                            </p>
-                        </div>
-                    </section>
-    
-                    <section>
-                        <h3 class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3"><span class="w-8 h-px bg-indigo-100"></span> 02. Methodology</h3>
-                        <div class="pl-11 border-l-2 border-slate-100 space-y-8">
-                            <div>
-                                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-users-cog text-indigo-500"></i> Continental Clustering</h4>
-                                <p class="text-slate-500 text-base leading-normal font-light">Clustered 456 players into 5 groups to address nationality data sparsity and normalized performance metrics.</p>
-                            </div>
-                            <div>
-                                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-chart-line text-indigo-500"></i> Stepwise Regression</h4>
-                                <p class="text-slate-500 text-base leading-normal font-light">Performed stepwise regression to select the most efficient model based on MSE and simplicity criteria.</p>
-                            </div>
-                        </div>
-                    </section>
-    
-                    <section>
-                        <h3 class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-px bg-indigo-100"></span> 03. Results & Insights
-                        </h3>
-                        <div class="pl-11 border-l-2 border-slate-100">
-                            <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 mb-8">
-                                <p class="text-slate-600 leading-normal font-light">Final model yielded an adjusted R² of <strong>0.4644</strong>. VIF testing ruled out multicollinearity, establishing a stable productivity baseline.</p>
-                            </div>
-                            <a href="paper/Fianl Paper.pdf" target="_blank" class="inline-flex items-center gap-3 bg-indigo-600 text-white px-8 py-4 rounded-2xl hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 font-bold uppercase tracking-widest text-xs">
-                                <i class="fas fa-file-pdf"></i> View Research Paper
-                            </a>
-                        </div>
-                    </section>
-                </div>
-            </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/ISresult.png')">
+            <img src="image/ISresult.png" alt="Results" class="w-full h-auto">
         </div>
-    </div>
-    
-    <div id="modal-life" class="modal fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative">
-            <button onclick="closeModal('modal-life')" class="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-full transition-all group">
-                <i class="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
-            </button>
-    
-            <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
-                <div class="mb-12">
-                    <span class="inline-block px-4 py-1.5 bg-emerald-50 text-emerald-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">Health & Food Analytics</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">Global Life Expectancy & <br class="hidden md:block">Nutritional Correlation</h2>
-                    <p class="text-xl text-slate-500 font-light leading-relaxed italic">Identifying dietary patterns of long-living populations through multi-dimensional visualization.</p>
-                </div>
-    
-                <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm mb-16 cursor-zoom-in" onclick="openLightbox('image/LE Analysis.png')">
-                    <img src="image/LE Analysis.png" alt="Tableau Dashboard" class="w-full h-auto">
-                </div>
-    
-                <div class="space-y-16">
-                    <section>
-                        <h3 class="text-xs font-black text-emerald-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-px bg-emerald-100"></span> 01. Project Purpose
-                        </h3>
-                        <div class="pl-11 border-l-2 border-slate-100">
-                            <p class="text-slate-600 text-lg leading-normal">
-                                Explored the relationship between food consumption, nutrient intake, and life expectancy across continents to identify longevity drivers.
-                            </p>
-                        </div>
-                    </section>
-    
-                    <section>
-                        <h3 class="text-xs font-black text-emerald-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3"><span class="w-8 h-px bg-emerald-100"></span> 02. Methodology</h3>
-                        <div class="pl-11 border-l-2 border-slate-100 space-y-8">
-                            <div>
-                                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-globe-americas text-emerald-500"></i> FAO/World Bank Integration</h4>
-                                <p class="text-slate-500 text-base leading-normal font-light">Merged 2018–2022 global datasets for cross-continental supply analysis using advanced JOIN operations.</p>
-                            </div>
-                            <div>
-                                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-chart-pie text-emerald-500"></i> Interactive Dashboards</h4>
-                                <p class="text-slate-500 text-base leading-normal font-light">Utilized radar charts for multi-nutrient supply and box plots for geographic distribution patterns.</p>
-                            </div>
-                        </div>
-                    </section>
-    
-                    <section>
-                        <h3 class="text-xs font-black text-emerald-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-px bg-emerald-100"></span> 03. Results & Insights
-                        </h3>
-                        <div class="pl-11 border-l-2 border-slate-100">
-                            <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 mb-8">
-                                <p class="text-slate-600 leading-normal font-light">Strong positive correlations found between <strong>Protein/Energy intake</strong> and life expectancy. Recommended increased fish/dairy consumption based on top-tier performance clusters.</p>
-                            </div>
-                            <a href="paper/LE_Final Report.pdf" target="_blank" class="inline-flex items-center gap-3 bg-emerald-600 text-white px-8 py-4 rounded-2xl hover:bg-emerald-700 transition shadow-lg shadow-emerald-200 font-bold uppercase tracking-widest text-xs">
-                                <i class="fas fa-file-pdf"></i> View Tableau Report
-                            </a>
-                        </div>
-                    </section>
-                </div>
-            </div>
+        <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/ISshap.png')">
+            <img src="image/ISshap.png" alt="SHAP" class="w-full h-auto">
+        </div>
         </div>
     </div>
 
-    <div id="modal-carbon" class="modal fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-        <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative">
-            <button onclick="closeModal('modal-carbon')" class="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-full transition-all group">
-                <i class="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
-            </button>
-    
-            <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
-                <div class="mb-12">
-                    <span class="inline-block px-4 py-1.5 bg-amber-50 text-amber-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">Sustainability & GHG Analytics</span>
-                    <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">NYC Building Carbon Inventory & <br class="hidden md:block">LL97 Risk Modeling</h2>
-                    <p class="text-xl text-slate-500 font-light leading-relaxed italic">Building a Scope 1 & 2 Carbon Inventory and Financial Penalty Simulation for Large-Scale Office Assets using NYC Open Data (LL84/LL97).</p>
-                </div>
-    
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-                    <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm group cursor-zoom-in" onclick="openLightbox('image/carbon_dash1.png')">
-                        <img src="image/carbon_dash1.png" alt="Rockefeller Portfolio Baseline" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <p class="p-4 text-[9px] text-slate-400 font-bold uppercase text-center bg-slate-50 tracking-widest">Dashboard 1: Rockefeller Portfolio Baseline</p>
-                    </div>
-                    <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm group cursor-zoom-in" onclick="openLightbox('image/carbon_dash2.png')">
-                        <img src="image/carbon_dash2.png" alt="NYC Market Benchmark" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                        <p class="p-4 text-[9px] text-slate-400 font-bold uppercase text-center bg-slate-50 tracking-widest">Dashboard 2: NYC Market Benchmark</p>
-                    </div>
-                </div>
-    
-                <div class="space-y-16">
-                    <section>
-                        <h3 class="text-xs font-black text-amber-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-px bg-amber-100"></span> 01. Problem Definition
-                        </h3>
-                        <div class="pl-11 border-l-2 border-slate-100">
-                            <p class="text-slate-600 text-lg leading-normal mb-6">
-                                The NYC Local Law 97 (LL97) mandates strict carbon emission limits with significant financial penalties. This project leverages NYC Open Data to construct a comprehensive carbon inventory for a "Pseudo-Rockefeller Portfolio" and model potential penalty risks across different regulatory phases.
-                            </p>
-                        </div>
-                    </section>
-    
-
-                    <section>
-                        <h3 class="text-xs font-black text-amber-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3"><span class="w-8 h-px bg-amber-100"></span> 02. Methodology</h3>
-                        <div class="pl-11 border-l-2 border-slate-100 space-y-10">
-                            <div>
-                                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-calculator text-amber-500"></i>Carbon Accounting & Metric Standardization</h4>
-                                <p class="text-slate-500 text-base leading-normal font-light">Standardized disparate fuel units into <strong>tCO₂e</strong> by applying CO₂, CH₄, and N₂O factors, scaling results to kgCO₂e/ft² for granular <strong>weighted intensity analysis</strong>.</p>
-                            </div>
-                            <div>
-                                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-exclamation-triangle text-amber-500"></i>LL97 Penalty Modeling</h4>
-                                <p class="text-slate-500 text-base leading-normal font-light">Engineered a simulation engine using <strong>time-bound regulatory limits</strong> to forecast annual financial liabilities based on the statutory <strong>$268/ton penalty</strong>.</p>
-                            </div>
-                        </div>
-                    </section>
-
-                    <section>
-                        <h3 class="text-xs font-black text-amber-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-                            <span class="w-8 h-px bg-amber-100"></span> 03. Results & Insights
-                        </h3>
-                        <div class="pl-11 border-l-2 border-slate-100">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                                    <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Portfolio Baseline</h4>
-                                    <p class="text-slate-500 text-base leading-normal font-light">
-                                        Rockefeller’s 2024 emissions are largely Scope 2–driven, with a few high-intensity assets driving disproportionate risk and LL97 penalty exposure escalating sharply across future compliance periods.
-                                    </p>
-                                </div>
-                                <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
-                                    <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">NYC Large Office Benchmark</h4>
-                                    <p class="text-slate-500 text-base leading-normal font-light">
-                                        Relative to NYC ≥ 200k ft² office peers, Rockefeller properties sit within the market distribution but include higher-intensity outliers, making peer-context (borough/scale) benchmarking essential for accurate interpretation.
-                                    </p>
-                                </div>
-                            </div>
-                    
-                            <div class="flex flex-col sm:flex-row gap-4">
-                                <a href="https://public.tableau.com/views/RockefellerPortfolioCarbonInventoryEmissionsBaseline/2024Snapshot?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" 
-                                   target="_blank" 
-                                   class="flex-1 inline-flex items-center justify-center gap-3 bg-amber-600 text-white px-6 py-4 rounded-2xl hover:bg-amber-700 transition shadow-lg shadow-amber-200 font-bold uppercase tracking-widest text-[10px]">
-                                    <i class="fas fa-chart-pie text-lg"></i> Dashboard 1: Portfolio Baseline
-                                </a>
-                                
-                                <a href="https://public.tableau.com/views/MarketIntelligenceNYCLarge-OfficeCarbonBenchmarking/NYC?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" 
-                                   target="_blank" 
-                                   class="flex-1 inline-flex items-center justify-center gap-3 bg-amber-800 text-white px-6 py-4 rounded-2xl hover:bg-slate-900 transition shadow-lg shadow-slate-200 font-bold uppercase tracking-widest text-[10px]">
-                                    <i class="fas fa-city text-lg"></i> Dashboard 2: Market Intelligence
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                </div>
+    <!-- Content -->
+    <div class="space-y-16">
+        <!-- 01 Purpose -->
+        <section>
+        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+            <span class="w-8 h-px bg-blue-100"></span> 01. Project Purpose
+        </h3>
+        <div class="pl-11 border-l-2 border-slate-100 space-y-5">
+            <p class="text-slate-600 text-lg leading-normal">
+            Climate volatility is increasing yield uncertainty, which makes planning difficult for producers, insurers, and policy makers.
+            This project builds an interpretable machine learning framework to forecast <b>corn</b>, <b>soybean</b>, and <b>wheat</b> yields at the <b>county level</b>,
+            using multi-dimensional climate signals (temperature, precipitation, solar radiation, CO₂, soil moisture).
+            </p>
+            <div class="bg-blue-50/50 border border-blue-100 rounded-2xl p-6">
+            <p class="text-slate-700 font-semibold mb-2">Key question</p>
+            <p class="text-slate-600">
+                “Which climate features (and which months) are most predictive of yield outcomes — and how stable are those signals across crops?”
+            </p>
             </div>
         </div>
+        </section>
+
+        <!-- 02 Methodology -->
+        <section>
+        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+            <span class="w-8 h-px bg-blue-100"></span> 02. Methodology
+        </h3>
+
+        <div class="pl-11 border-l-2 border-slate-100 space-y-10">
+            <!-- Data -->
+            <div>
+            <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                <i class="fas fa-database text-blue-500"></i> Data Integration & Harmonization
+            </h4>
+            <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                <li>• Built a reproducible pipeline to assemble county-level panels across multiple climate dimensions.</li>
+                <li>• Standardized time resolution into a consistent monthly structure to align signals across variables.</li>
+                <li>• Noted practical data constraints (e.g., some gridded products produce repeated values across counties due to coarse spatial resolution).</li>
+            </ul>
+            </div>
+
+            <!-- Modeling -->
+            <div>
+            <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                <i class="fas fa-gears text-blue-500"></i> Modeling Strategy (XGBoost)
+            </h4>
+            <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                <li>• Trained separate models by crop to respect crop-specific phenology and climate sensitivity.</li>
+                <li>• Used cross-validation to evaluate generalization and reduce sensitivity to a single split.</li>
+                <li>• Optimized model behavior with a bias toward stable out-of-sample performance (not just training fit).</li>
+            </ul>
+            </div>
+
+            <!-- Explainability -->
+            <div>
+            <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                <i class="fas fa-brain text-blue-500"></i> Explainability (TreeSHAP)
+            </h4>
+            <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                <li>• Applied TreeSHAP to quantify each feature’s marginal contribution to predictions.</li>
+                <li>• Interpreted “month_feature” patterns (e.g., <span class="font-semibold">5_Solar</span> = May solar radiation) to connect signals to growing-season dynamics.</li>
+                <li>• Produced global importance (ranked features) and directional insights (high vs. low values pushing yield up/down).</li>
+            </ul>
+            </div>
+        </div>
+        </section>
+
+        <!-- 03 Results -->
+        <section>
+        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+            <span class="w-8 h-px bg-blue-100"></span> 03. Results & Insights
+        </h3>
+
+        <div class="pl-11 border-l-2 border-slate-100 space-y-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100">
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Corn</p>
+                <p class="text-2xl font-black text-slate-900 mb-1">R²: 0.759</p>
+                <p class="text-sm text-slate-500">RMSE: 11.99 <br> NRMSE: 6.35%</p>
+            </div>
+            <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100">
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Soybean</p>
+                <p class="text-2xl font-black text-slate-900 mb-1">R²: 0.810</p>
+                <p class="text-sm text-slate-500">RMSE: 4.12 <br> NRMSE: 7.46%</p>
+            </div>
+            <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100">
+                <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Wheat</p>
+                <p class="text-2xl font-black text-slate-900 mb-1">R²: 0.478</p>
+                <p class="text-sm text-slate-500">RMSE: 12.15 <br> NRMSE: 27.77%</p>
+            </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+            <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Interpretation Highlights</h4>
+            <ul class="text-slate-600 leading-normal font-light space-y-3">
+                <li>• Corn and soybean show tight predicted-vs-actual clustering (strong generalization), while wheat exhibits higher dispersion (weaker fit).</li>
+                <li>• SHAP reveals that yield is driven by <b>seasonal patterns</b> rather than a single static feature—month-level climate signals matter.</li>
+                <li>• The explainability layer turns the model into an “early-warning” system: you can monitor the months/features most responsible for large deviations.</li>
+            </ul>
+            </div>
+        </div>
+        </section>
+
+        <!-- 04 Limitations -->
+        <section>
+        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+            <span class="w-8 h-px bg-blue-100"></span> 04. Limitations & Next Steps
+        </h3>
+        <div class="pl-11 border-l-2 border-slate-100 space-y-6">
+            <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100">
+            <ul class="text-slate-600 leading-normal font-light space-y-3">
+                <li>• Some climate inputs are spatially coarse, which can reduce county-level uniqueness and compress signal variance.</li>
+                <li>• Wheat’s lower performance suggests missing drivers (e.g., management practices, cultivar differences, or region-specific agronomics).</li>
+                <li>• Next steps: add agronomic controls, test region-stratified models, and introduce lagged/accumulated features aligned to crop growth stages.</li>
+            </ul>
+            </div>
+
+            <a href="paper/IS Thesis - YL.pdf" target="_blank"
+            class="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl hover:bg-blue-700 transition shadow-lg shadow-blue-200 font-bold uppercase tracking-widest text-xs">
+            <i class="fas fa-file-pdf"></i> View Full Thesis
+            </a>
+        </div>
+        </section>
     </div>
-    
-    <script>
-        // --- Lightbox Image Enlargement ---
-        function openLightbox(src) {
-            const lb = document.getElementById('lightbox');
-            const lbImg = document.getElementById('lightbox-img');
-            if (lb && lbImg) {
-                lbImg.src = src;
-                lb.classList.remove('hidden');
-                lb.classList.add('flex');
-                document.body.classList.add('modal-active'); 
-            }
+    </div>
+</div>
+</div>
+
+<div id="modal-epl" class="modal fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative">
+      <button onclick="closeModal('modal-epl')" class="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-full transition-all group">
+        <i class="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
+      </button>
+  
+      <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
+        <!-- Header -->
+        <div class="mb-12">
+          <span class="inline-block px-4 py-1.5 bg-indigo-50 text-indigo-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">
+            Sports Analytics
+          </span>
+          <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">
+            EPL Athlete Performance <br class="hidden md:block">Optimization Model
+          </h2>
+          <p class="text-xl text-slate-500 font-light leading-relaxed italic">
+            Quantifying how age relates to Premier League productivity using a parsimonious multiple regression model.
+          </p>
+  
+        </div>
+  
+        <!-- Visuals -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/EPLModels.png')">
+            <img src="image/EPLModels.png" alt="Model Table" class="w-full h-full object-cover">
+          </div>
+          <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm cursor-zoom-in" onclick="openLightbox('image/EPLResidual.png')">
+            <img src="image/EPLResidual.png" alt="Residuals" class="w-full h-full object-cover">
+          </div>
+        </div>
+  
+        <div class="space-y-16">
+          <!-- 01 Purpose -->
+          <section>
+            <h3 class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-indigo-100"></span> 01. Project Purpose
+            </h3>
+            <div class="pl-11 border-l-2 border-slate-100 space-y-5">
+              <p class="text-slate-600 text-lg leading-normal">
+                This project asks: <b>Does a player’s age meaningfully affect season productivity in the EPL? </b>
+                Because “performance” is multi-dimensional, I defined a clean, rate-based outcome:
+                non-penalty goals + assists per 90 mins (G+A-PK_90), which normalizes for playing time.
+              </p>
+  
+              <div class="bg-indigo-50/50 border border-indigo-100 rounded-2xl p-6">
+                <p class="text-slate-700 font-semibold mb-2">Why this matters</p>
+                <p class="text-slate-600">
+                  Clubs make age-sensitive decisions (contracts, transfers, rotation). A transparent model helps separate
+                  “age effect” from confounders like team context, role, and progression metrics.
+                </p>
+              </div>
+            </div>
+          </section>
+  
+          <!-- 02 Methodology -->
+          <section>
+            <h3 class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-indigo-100"></span> 02. Methodology
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-10">
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                  <i class="fas fa-database text-indigo-500"></i> Data & Feature Set
+                </h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• Sourced player statistics from FBref (StatsBomb-powered match tracking) for the 2023–24 season.</li>
+                  <li>• Response variable: <b>G+A-PK_90</b>.</li>
+                  <li>• Candidate predictors included: age, position, team, minutes/starts, cards, and progressive actions (<b>PrgC/PrgP/PrgG</b>), plus additional categorical structure.</li>
+                </ul>
+              </div>
+  
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                  <i class="fas fa-sliders text-indigo-500"></i> Model Search & Selection Logic
+                </h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• Built multiple candidate regression specifications (7 models) to balance fit and practicality.</li>
+                  <li>• Selected the final model using 4 criteria:
+                    <b>Adjusted R²</b>, <b>test correlation</b> (pred vs actual), <b>MSE</b>, and <b>simplicity</b> (parameter count).
+                  </li>
+                  <li>• Chose <b>Model 3</b> because it delivered competitive predictive power with fewer parameters than more complex alternatives.</li>
+                </ul>
+              </div>
+  
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                  <i class="fas fa-shield-check text-indigo-500"></i> Statistical Validation
+                </h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• Used coefficient t-tests and an ANOVA table to confirm overall model usefulness.</li>
+                  <li>• Checked multicollinearity with VIF (all well below typical concern thresholds).</li>
+                  <li>• Reviewed residual diagnostics; normality/constant variance showed mild issues, but linearity and independence were acceptable for this modeling goal.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+  
+          <!-- 03 Results -->
+          <section>
+            <h3 class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-indigo-100"></span> 03. Results & Insights
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-8">
+              <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100">
+                <p class="text-slate-700 font-semibold mb-2">Final model (Model 3)</p>
+                <p class="text-slate-600 leading-normal font-light">
+                  The final specification predicts <b>G+A-PK_90</b> using only four drivers: <b>Team</b>, <b>Position</b>, <b>Age</b>, and <b>PrgG</b>
+                  (progressive passes received / progression involvement metric).
+                </p>
+  
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="bg-white border border-slate-100 rounded-2xl p-5">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Adjusted R²</p>
+                    <p class="text-2xl font-black text-slate-900">0.4644</p>
+                  </div>
+                  <div class="bg-white border border-slate-100 rounded-2xl p-5">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Test Correlation</p>
+                    <p class="text-2xl font-black text-slate-900">0.588</p>
+                  </div>
+                  <div class="bg-white border border-slate-100 rounded-2xl p-5">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">MSE</p>
+                    <p class="text-2xl font-black text-slate-900">0.037</p>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">What the model says</h4>
+                <ul class="text-slate-600 leading-normal font-light space-y-3">
+                  <li>• <b>Age has a statistically significant positive association</b> with G+A-PK_90 when controlling for team, position, and PrgG (coef ≈ 0.00724).</li>
+                  <li>• Team and position act as strong contextual controls—productivity is not “pure skill,” it’s also system + role.</li>
+                  <li>• Low VIF values suggest the model’s signals are not redundant, making interpretation stable.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+  
+          <!-- 04 Practical Use -->
+          <section>
+            <h3 class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-indigo-100"></span> 04. How to Use It
+            </h3>
+            <div class="pl-11 border-l-2 border-slate-100 space-y-6">
+              <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100">
+                <ul class="text-slate-600 leading-normal font-light space-y-3">
+                  <li>• Compare players within the same role/team context to isolate age-related shifts.</li>
+                  <li>• Use PrgG as a “involvement” proxy to separate high-touch attackers from low-involvement roles.</li>
+                  <li>• Extend: add interaction terms (Age×Pos), nonlinear splines, or quantile regression to capture heterogeneous aging curves.</li>
+                </ul>
+              </div>
+  
+              <a href="paper/Fianl Paper.pdf" target="_blank"
+                class="inline-flex items-center gap-3 bg-indigo-600 text-white px-8 py-4 rounded-2xl hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 font-bold uppercase tracking-widest text-xs">
+                <i class="fas fa-file-pdf"></i> View Research Paper
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-life" class="modal fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative">
+      <button onclick="closeModal('modal-life')" class="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-full transition-all group">
+        <i class="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
+      </button>
+  
+      <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
+        <!-- Header -->
+        <div class="mb-12">
+          <span class="inline-block px-4 py-1.5 bg-emerald-50 text-emerald-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">
+            Health & Food Analytics
+          </span>
+          <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">
+            Global Life Expectancy & <br class="hidden md:block">Nutritional Correlation
+          </h2>
+          <p class="text-xl text-slate-500 font-light leading-relaxed italic">
+            Identifying dietary patterns associated with longer life expectancy using multi-dimensional Tableau analytics.
+          </p>
+        </div>
+  
+        <!-- Visual -->
+        <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm mb-16 cursor-zoom-in" onclick="openLightbox('image/LE Analysis.png')">
+          <img src="image/LE Analysis.png" alt="Tableau Dashboard" class="w-full h-auto">
+        </div>
+  
+        <div class="space-y-16">
+          <!-- 01 Purpose -->
+          <section>
+            <h3 class="text-xs font-black text-emerald-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-emerald-100"></span> 01. Project Purpose
+            </h3>
+            <div class="pl-11 border-l-2 border-slate-100 space-y-5">
+              <p class="text-slate-600 text-lg leading-normal">
+                This analysis focuses on a practical question:
+                <b>Which food groups and nutrients are most closely associated with longer life expectancy?</b>
+                Rather than treating nutrition as a single number, I broke the problem into two layers:
+                <b>food groups</b> (what people eat) and <b>nutrients</b> (what those foods provide).
+              </p>
+  
+              <div class="bg-emerald-50/50 border border-emerald-100 rounded-2xl p-6">
+                <p class="text-slate-700 font-semibold mb-2">Analytical framing</p>
+                <p class="text-slate-600">
+                  The goal is correlation-based insight (not causality): surfacing global patterns that are consistent across countries and regions,
+                  and then stress-testing those patterns by comparing top- and bottom-life-expectancy countries.
+                </p>
+              </div>
+            </div>
+          </section>
+  
+          <!-- 02 Methodology -->
+          <section>
+            <h3 class="text-xs font-black text-emerald-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-emerald-100"></span> 02. Methodology
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-10">
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                  <i class="fas fa-link text-emerald-500"></i> Data Integration
+                </h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• Merged FAO food availability (food groups + nutrient indicators) with World Bank health indicators.</li>
+                  <li>• Joined primarily by <b>country code</b> and <b>year</b>, then used <b>2018–2022 averages</b> to emphasize cross-country differences (life expectancy was relatively stable across the window).</li>
+                  <li>• Introduced a continent dimension for high-level pattern discovery before drilling down to country-level relationships.</li>
+                </ul>
+              </div>
+  
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                  <i class="fas fa-chart-area text-emerald-500"></i> Visualization Plan (Tableau)
+                </h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• <b>Boxplot</b>: continent distribution of life expectancy.</li>
+                  <li>• <b>Heatmap</b>: within-continent food-group consumption contrasts (what dominates inside each region).</li>
+                  <li>• <b>Scatterplots</b>: nutrient vs life expectancy (energy + protein).</li>
+                  <li>• <b>Bar + radar</b>: top-5 vs bottom-5 life expectancy countries to expose dietary and micronutrient gaps.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+  
+          <!-- 03 Results -->
+          <section>
+            <h3 class="text-xs font-black text-emerald-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-emerald-100"></span> 03. Results & Insights
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-8">
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Nutrients: Energy & Protein</h4>
+                <ul class="text-slate-600 leading-normal font-light space-y-3">
+                  <li>• Both energy supply (kcal/day) and protein supply (g/day) show <b>moderate positive correlation</b> with life expectancy.</li>
+                  <li>• Trendline interpretation: <b>+10 kcal/day</b> aligns with roughly <b>+1.6 years</b> life expectancy, and <b>+1g protein/day</b> aligns with ~<b>+3.5 years</b> (correlation, not causation).</li>
+                  <li>• Each scatterplot shows <b>R² ≈ 0.5</b>, meaning these nutrients explain about half of cross-country variance in life expectancy.</li>
+                </ul>
+              </div>
+  
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Food Groups: The “Fish Gap”</h4>
+                <ul class="text-slate-700 leading-normal font-light space-y-3">
+                  <li>• When comparing the <b>top-5</b> vs <b>bottom-5</b> life expectancy countries, fish & shellfish supply shows the most pronounced gap.</li>
+                  <li>• A focused nutrient breakdown indicates the top group receives substantially more <b>DHA</b>, <b>EPA</b>, and healthy fatty-acid profiles (<b>MUFA/PUFA/SFA</b>)—largely sourced from fish & shellfish.</li>
+                </ul>
+              </div>
+  
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Regional Pattern</h4>
+                <p class="text-slate-600 leading-normal font-light">
+                  At the continent level, regions with higher life expectancy (notably Europe and parts of Asia) show consistently higher
+                  relative consumption of <b>milk/dairy</b> and <b>vegetables</b> within their own regional profiles—suggesting these groups
+                  often co-occur with stronger longevity outcomes.
+                </p>
+              </div>
+            </div>
+          </section>
+  
+          <!-- 04 Recommendations -->
+          <section>
+            <h3 class="text-xs font-black text-emerald-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-emerald-100"></span> 04. Recommendations
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-6">
+              <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100">
+                <ul class="text-slate-600 leading-normal font-light space-y-3">
+                  <li>• Increase consumption of <b>fish & shellfish</b> as a nutrient-dense lever (omega-3 rich profile: DHA/EPA).</li>
+                  <li>• Include more <b>milk/dairy</b> and <b>vegetables</b> to mirror common patterns in higher-life-expectancy regions.</li>
+                  <li>• Ensure sufficient baseline <b>energy</b> and <b>protein</b> intake daily as foundational drivers in the correlation analysis.</li>
+                </ul>
+              </div>
+  
+              <a href="paper/LE_Final Report.pdf" target="_blank"
+                class="inline-flex items-center gap-3 bg-emerald-600 text-white px-8 py-4 rounded-2xl hover:bg-emerald-700 transition shadow-lg shadow-emerald-200 font-bold uppercase tracking-widest text-xs">
+                <i class="fas fa-file-pdf"></i> View Tableau Report
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-carbon" class="modal fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+    <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative">
+      <button onclick="closeModal('modal-carbon')" class="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-full transition-all group">
+        <i class="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
+      </button>
+  
+      <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
+        <!-- Header -->
+        <div class="mb-12">
+          <span class="inline-block px-4 py-1.5 bg-amber-50 text-amber-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">
+            Sustainability & GHG Analytics
+          </span>
+          <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">
+            NYC Large Office Carbon Inventory & <br class="hidden md:block">LL97 Compliance Risk Benchmark
+          </h2>
+          <p class="text-xl text-slate-500 font-light leading-relaxed italic">
+            Built a reporting-grade Scope 1–2 inventory for NYC large offices (≥200k ft²), benchmarked a pseudo-portfolio against the market,
+            and translated emissions into LL97 penalty exposure across future compliance periods.
+          </p>
+        </div>
+  
+        <!-- Dashboards Preview (click to zoom) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+          <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm group cursor-zoom-in"
+               onclick="openLightbox('image/carbon_dash1.png')">
+            <img src="image/carbon_dash1.png" alt="Dashboard 1: Rockefeller Baseline" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <p class="p-4 text-[9px] text-slate-400 font-bold uppercase text-center bg-slate-50 tracking-widest">
+              Dashboard 1: Pseudo-Portfolio Baseline (CY 2024)
+            </p>
+          </div>
+  
+          <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm group cursor-zoom-in"
+               onclick="openLightbox('image/carbon_dash2.png')">
+            <img src="image/carbon_dash2.png" alt="Dashboard 2: NYC Market Benchmark" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <p class="p-4 text-[9px] text-slate-400 font-bold uppercase text-center bg-slate-50 tracking-widest">
+              Dashboard 2: NYC Large Office Benchmark (Rockefeller vs Market)
+            </p>
+          </div>
+        </div>
+
+  
+        <!-- Narrative Sections -->
+        <div class="space-y-16">
+          <!-- 01 Purpose -->
+          <section>
+            <h3 class="text-xs font-black text-amber-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-amber-100"></span> 01. Project Purpose
+            </h3>
+            <div class="pl-11 border-l-2 border-slate-100 space-y-6">
+              <p class="text-slate-600 text-lg leading-normal">
+                This project builds a <b>reporting-grade Scope 1–2 emissions inventory</b> for NYC large office buildings (GFA ≥ 200,000 ft²)
+                using benchmarking disclosures, then connects emissions performance to <b>Local Law 97 compliance risk</b>.
+                I created a pseudo-corporate portfolio centered on :contentReference[oaicite:0]{index=0} and benchmarked it against the NYC large-office market
+                to support prioritization and compliance-risk storytelling.
+              </p>
+  
+              <div class="bg-amber-50/50 border border-amber-100 rounded-2xl p-6">
+                <p class="text-slate-700 font-semibold mb-2">Business framing</p>
+                <p class="text-slate-600">
+                  Move beyond “emissions reporting” into decision support: identify outliers, contextualize performance vs peers,
+                  and translate operational intensity into forward-looking regulatory cost exposure.
+                </p>
+              </div>
+            </div>
+          </section>
+  
+          <!-- 02 Methodology -->
+          <section>
+            <h3 class="text-xs font-black text-amber-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-amber-100"></span> 02. Methodology
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-10">
+  
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                  <i class="fas fa-shield-alt text-amber-500"></i> Data Quality Rules & Audit-Ready Metrics
+                </h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• Reclassified <b>zero-emission records</b> as <b>missing/invalid disclosures</b> (not “true zero”) to prevent downward bias.</li>
+                  <li>• Tracked <b>coverage-aware KPIs</b> (e.g., “covered buildings only”) to keep YoY comparisons defensible.</li>
+                </ul>
+              </div>
+  
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                  <i class="fas fa-calculator text-amber-500"></i> KPI Construction & Standardization
+                </h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• Produced consistent reporting metrics: <b>Total emissions (tCO₂e)</b>, <b>Intensity (kgCO₂e/ft²)</b>, and <b>portfolio-weighted intensity</b> (Σ emissions / Σ GFA).</li>
+                  <li>• Maintained unit clarity to ensure cross-asset and peer comparability (especially for large-GFA outliers).</li>
+                </ul>
+              </div>
+  
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                  <i class="fas fa-chart-bar text-amber-500"></i> Portfolio + Market Benchmarking (Tableau)
+                </h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• Dashboard 1: portfolio baseline — asset map, building summary, Scope/energy-source composition, YoY context.</li>
+                  <li>• Dashboard 2: market benchmark — borough overview, intensity distribution, Rockefeller vs market, scale vs intensity positioning.</li>
+                </ul>
+              </div>
+  
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
+                  <i class="fas fa-exclamation-triangle text-amber-500"></i> LL97 Compliance Risk Translation
+                </h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• Estimated penalty exposure using transparent assumptions: exceedance × <b>$268 / tCO₂e</b>.</li>
+                  <li>• Visualized risk across future compliance periods (2030s–2040s) under a “constant 2024 emissions” baseline to show the magnitude of regulatory tightening.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+  
+          <!-- 03 Results -->
+          <section>
+            <h3 class="text-xs font-black text-amber-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-amber-100"></span> 03. Results & Insights
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-8">
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Portfolio Drivers & Asset Prioritization</h4>
+                <ul class="text-slate-700 leading-normal font-light space-y-3">
+                  <li>• Portfolio emissions are largely <b>Scope 2-driven</b> (electricity/steam), indicating grid and electrification levers matter most.</li>
+                  <li>• Performance varies materially at the asset level; a few high-intensity buildings drive disproportionate risk—supporting <b>targeted retrofits</b> vs one-size-fits-all actions.</li>
+                </ul>
+              </div>
+  
+              <div class="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-sm">
+                <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Financial Translation (LL97)</h4>
+                <p class="text-slate-600 leading-normal font-light">
+                  Quantified how maintaining current emissions can translate into <b>material LL97 penalty exposure</b> across future compliance periods,
+                  reframing decarbonization as both an environmental and financial decision.
+                </p>
+              </div>
+            </div>
+          </section>
+  
+          <!-- 04 What I Built -->
+          <section>
+            <h3 class="text-xs font-black text-amber-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+              <span class="w-8 h-px bg-amber-100"></span> 04. Deliverables
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-6">
+              <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100">
+                <ul class="text-slate-600 leading-normal font-light space-y-3">
+                  <li>• Scope 1–2 inventory (tCO₂e) and intensity metrics (kgCO₂e/ft²) with coverage-aware rules.</li>
+                  <li>• Two Tableau dashboards: <b>Portfolio Baseline</b> + <b>NYC Market Benchmark</b>.</li>
+                  <li>• LL97 penalty exposure views across multiple future compliance periods with transparent assumptions.</li>
+                </ul>
+              </div>
+  
+              <div class="flex flex-col sm:flex-row gap-4">
+                <a href="https://public.tableau.com/views/RockefellerPortfolioCarbonInventoryEmissionsBaseline/2024Snapshot?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                   target="_blank"
+                   class="flex-1 inline-flex items-center justify-center gap-3 bg-amber-600 text-white px-6 py-4 rounded-2xl hover:bg-amber-700 transition shadow-lg shadow-amber-200 font-bold uppercase tracking-widest text-[10px]">
+                  <i class="fas fa-chart-pie text-lg"></i> View Dashboard 1
+                </a>
+  
+                <a href="https://public.tableau.com/views/MarketIntelligenceNYCLarge-OfficeCarbonBenchmarking/NYC?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link"
+                   target="_blank"
+                   class="flex-1 inline-flex items-center justify-center gap-3 bg-slate-900 text-white px-6 py-4 rounded-2xl hover:bg-slate-800 transition shadow-lg shadow-slate-200 font-bold uppercase tracking-widest text-[10px]">
+                  <i class="fas fa-city text-lg"></i> View Dashboard 2
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Lightbox Image Enlargement ---
+    function openLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      if (lb && lbImg) {
+        lbImg.src = src;
+        lb.classList.remove('hidden');
+        lb.classList.add('flex');
+        document.body.classList.add('modal-active');
+      }
+    }
+
+    function closeLightbox() {
+      const lb = document.getElementById('lightbox');
+      if (lb) {
+        lb.classList.remove('flex');
+        lb.classList.add('hidden');
+        if (!document.querySelector('.modal.active')) {
+          document.body.classList.remove('modal-active');
         }
-    
-        function closeLightbox() {
-            const lb = document.getElementById('lightbox');
-            if (lb) {
-                lb.classList.remove('flex');
-                lb.classList.add('hidden');
-                if (!document.querySelector('.modal.active')) {
-                    document.body.classList.remove('modal-active');
-                }
-            }
+      }
+    }
+
+    // --- Standard Modal Control ---
+    function openModal(id){
+      const modal = document.getElementById(id);
+      if(modal){
+        modal.classList.add('active');
+        document.body.classList.add('modal-active');
+      }
+    }
+    function closeModal(id){
+      const modal = document.getElementById(id);
+      if(modal){
+        modal.classList.remove('active');
+        if (document.getElementById('lightbox').classList.contains('hidden')) {
+          document.body.classList.remove('modal-active');
         }
-    
-        // --- Standard Modal Control ---
-        function openModal(id){
-            const modal = document.getElementById(id);
-            if(modal){
-                modal.classList.add('active');
-                document.body.classList.add('modal-active');
-            }
-        }
-        function closeModal(id){
-            const modal = document.getElementById(id);
-            if(modal){
-                modal.classList.remove('active');
-                if (document.getElementById('lightbox').classList.contains('hidden')) {
-                    document.body.classList.remove('modal-active');
-                }
-            }
-        }
-        function toggleMobileMenu(){
-            const menu = document.getElementById('mobile-menu-container');
-            if (menu) menu.classList.toggle('hidden');
-        }
-    </script>
+      }
+    }
+    function toggleMobileMenu(){
+      const menu = document.getElementById('mobile-menu-container');
+      if (menu) menu.classList.toggle('hidden');
+    }
+  </script>
+
+</body>
+</html>
