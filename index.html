@@ -26,7 +26,7 @@
     /* --- PROJECTS: screenshot-style carousel (UPDATED) --- */
     .project-swiper {
       overflow: visible !important;
-      padding-top: 80px !important; 
+      padding-top: 80px !important;   /* 카드가 아래쪽에 오도록 여백 */
       padding-bottom: 70px !important;
     }
 
@@ -415,7 +415,7 @@
             <div class="swiper-slide">
               <div onclick="openModal('modal-thesis')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
                 <div class="flex-grow">
-                  <div class="text-blue-600 text-3xl mb-6"><i class="fas fa-seedling"></i></div>
+                  <div class="text-green-600 text-3xl mb-6"><i class="fas fa-seedling"></i></div>
                   <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight">Crop Yield Prediction with Climate Factors</h3>
                   <p class="text-slate-500 text leading-normal">Predicting corn, soybean, and wheat yields via XGBoost and SHAP to strengthen food security under climate volatility.</p>
                 </div>
@@ -427,7 +427,7 @@
                     <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Climate Data</span>
                     <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Agriculture</span>
                   </div>
-                  <div class="flex items-center text-[10px] font-black text-blue-600 tracking-widest uppercase">
+                  <div class="flex items-center text-[10px] font-black text-green-600 tracking-widest uppercase">
                     Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
                   </div>
                 </div>
@@ -491,6 +491,27 @@
                     <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Tableau</span>
                   </div>
                   <div class="flex items-center text-[10px] font-black text-amber-600 tracking-widest uppercase">
+                    Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="swiper-slide">
+              <div onclick="openModal('modal-manufacturing')" class="card-hover cursor-pointer bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-md flex flex-col h-[450px]">
+                <div class="flex-grow">
+                  <div class="text-slate-600 text-3xl mb-6"><i class="fas fa-industry"></i></div>
+                  <h3 class="text-xl font-bold mb-3 text-slate-900 leading-tight">Manufacturing Ops KPI Mart in PostgreSQL</h3>
+                  <p class="text-slate-500 text leading-normal">Converting raw machine event logs and work orders into a line-level analytics mart for downtime and performance analysis.</p>
+                </div>
+                <div class="mt-auto">
+                  <div class="flex flex-wrap gap-1.5 mb-6">
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">PostgreSQL</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">SQL Engineering</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">ETL</span>
+                    <span class="px-2 py-0.5 bg-slate-100 text-slate-600 text-[9px] font-bold rounded-md uppercase">Operations</span>
+                  </div>
+                  <div class="flex items-center text-[10px] font-black text-slate-600 tracking-widest uppercase">
                     Explore More <i class="fas fa-arrow-right ml-2 arrow-icon"></i>
                   </div>
                 </div>
@@ -594,7 +615,7 @@
     <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
     <!-- Header -->
     <div class="mb-12">
-        <span class="inline-block px-4 py-1.5 bg-blue-50 text-blue-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">
+        <span class="inline-block px-4 py-1.5 bg-green-50 text-green-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">
         Machine Learning Research
         </span>
         <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight">
@@ -624,8 +645,8 @@
     <div class="space-y-16">
         <!-- 01 Purpose -->
         <section>
-        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-            <span class="w-8 h-px bg-blue-100"></span> 01. Project Purpose
+        <h3 class="text-xs font-black text-green-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+            <span class="w-8 h-px bg-green-100"></span> 01. Project Purpose
         </h3>
         <div class="pl-11 border-l-2 border-slate-100 space-y-5">
             <p class="text-slate-600 text-lg leading-normal">
@@ -633,7 +654,7 @@
             This project builds an interpretable machine learning framework to forecast <b>corn</b>, <b>soybean</b>, and <b>wheat</b> yields at the <b>county level</b>,
             using multi-dimensional climate signals (temperature, precipitation, solar radiation, CO₂, soil moisture).
             </p>
-            <div class="bg-blue-50/50 border border-blue-100 rounded-2xl p-6">
+            <div class="bg-green-50/50 border border-green-100 rounded-2xl p-6">
             <p class="text-slate-700 font-semibold mb-2">Key question</p>
             <p class="text-slate-600">
                 “Which climate features (and which months) are most predictive of yield outcomes — and how stable are those signals across crops?”
@@ -644,15 +665,15 @@
 
         <!-- 02 Methodology -->
         <section>
-        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-            <span class="w-8 h-px bg-blue-100"></span> 02. Methodology
+        <h3 class="text-xs font-black text-green-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+            <span class="w-8 h-px bg-green-100"></span> 02. Methodology
         </h3>
 
         <div class="pl-11 border-l-2 border-slate-100 space-y-10">
             <!-- Data -->
             <div>
             <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
-                <i class="fas fa-database text-blue-500"></i> Data Integration & Harmonization
+                <i class="fas fa-database text-green-500"></i> Data Integration & Harmonization
             </h4>
             <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
                 <li>• Built a reproducible pipeline to assemble county-level panels across multiple climate dimensions.</li>
@@ -664,7 +685,7 @@
             <!-- Modeling -->
             <div>
             <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
-                <i class="fas fa-gears text-blue-500"></i> Modeling Strategy (XGBoost)
+                <i class="fas fa-gears text-green-500"></i> Modeling Strategy (XGBoost)
             </h4>
             <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
                 <li>• Trained separate models by crop to respect crop-specific phenology and climate sensitivity.</li>
@@ -676,7 +697,7 @@
             <!-- Explainability -->
             <div>
             <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2">
-                <i class="fas fa-brain text-blue-500"></i> Explainability (TreeSHAP)
+                <i class="fas fa-brain text-green-500"></i> Explainability (TreeSHAP)
             </h4>
             <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
                 <li>• Applied TreeSHAP to quantify each feature’s marginal contribution to predictions.</li>
@@ -689,8 +710,8 @@
 
         <!-- 03 Results -->
         <section>
-        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-            <span class="w-8 h-px bg-blue-100"></span> 03. Results & Insights
+        <h3 class="text-xs font-black text-green-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+            <span class="w-8 h-px bg-green-100"></span> 03. Results & Insights
         </h3>
 
         <div class="pl-11 border-l-2 border-slate-100 space-y-8">
@@ -725,8 +746,8 @@
 
         <!-- 04 Limitations -->
         <section>
-        <h3 class="text-xs font-black text-blue-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
-            <span class="w-8 h-px bg-blue-100"></span> 04. Limitations & Next Steps
+        <h3 class="text-xs font-black text-green-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
+            <span class="w-8 h-px bg-green-100"></span> 04. Limitations & Next Steps
         </h3>
         <div class="pl-11 border-l-2 border-slate-100 space-y-6">
             <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100">
@@ -738,7 +759,7 @@
             </div>
 
             <a href="paper/IS Thesis - YL.pdf" target="_blank"
-            class="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl hover:bg-blue-700 transition shadow-lg shadow-blue-200 font-bold uppercase tracking-widest text-xs">
+            class="inline-flex items-center gap-3 bg-green-600 text-white px-8 py-4 rounded-2xl hover:bg-green-700 transition shadow-lg shadow-green-200 font-bold uppercase tracking-widest text-xs">
             <i class="fas fa-file-pdf"></i> View Full Thesis
             </a>
         </div>
@@ -1223,6 +1244,145 @@
                   <i class="fas fa-city text-lg"></i> View Dashboard 2
                 </a>
               </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modal-manufacturing" class="modal fixed inset-0 z-[100] items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm text-left">
+    <div class="bg-white w-full max-w-4xl max-h-[90vh] rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative">
+      <button onclick="closeModal('modal-manufacturing')" class="absolute top-8 right-8 z-10 w-12 h-12 flex items-center justify-center bg-slate-100 hover:bg-red-50 text-slate-500 hover:text-red-600 rounded-full transition-all group">
+        <i class="fas fa-times text-xl group-hover:rotate-90 transition-transform"></i>
+      </button>
+  
+      <div class="overflow-y-auto custom-scrollbar p-8 md:p-16">
+        <div class="mb-12">
+          <span class="inline-block px-4 py-1.5 bg-slate-50 text-slate-600 text-[10px] font-black uppercase tracking-widest rounded-full mb-6">
+            Data Engineering & Ops Analytics
+          </span>
+          <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-6 leading-tight text-left">
+            Manufacturing Ops KPI Mart <br class="hidden md:block">in PostgreSQL
+          </h2>
+          <p class="text-xl text-slate-500 font-light leading-relaxed italic text-left">
+            Architecting a reproducible analytics warehouse to transform raw IoT signals and ERP records into actionable operational intelligence.
+          </p>
+        </div>
+  
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+          <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm group cursor-zoom-in" onclick="openLightbox('image/SQL_ERD.png')">
+            <img src="image/SQL_ERD.png" alt="ERD" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <p class="p-4 text-[9px] text-slate-400 font-bold uppercase text-center bg-slate-50 tracking-widest">Visual 1: Data Model (Star Schema ERD)</p>
+          </div>
+          <div class="rounded-3xl overflow-hidden border border-slate-100 shadow-sm group cursor-zoom-in" onclick="openLightbox('image/SQL_Result.png')">
+            <img src="image/SQL_Result.png" alt="Result" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <p class="p-4 text-[9px] text-slate-400 font-bold uppercase text-center bg-slate-50 tracking-widest">Visual 2: Daily Line KPI Mart Output</p>
+          </div>
+        </div>
+  
+        <div class="space-y-16">
+          <section>
+            <h3 class="text-xs font-black text-slate-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3 text-left">
+              <span class="w-8 h-px bg-slate-100"></span> 01. Project Purpose
+            </h3>
+            <div class="pl-11 border-l-2 border-slate-100 space-y-5">
+              <p class="text-slate-600 text-lg leading-normal">
+                In manufacturing, defining the <b>grain of analysis</b> is critical. This project translates fragmented machine signals (IoT logs) and ERP data (Work Orders) into a stable, queryable analytics layer.
+              </p>
+              <div class="bg-slate-50/50 border border-slate-100 rounded-2xl p-6">
+                <p class="text-slate-700 font-semibold mb-2">Operational Goal</p>
+                <p class="text-slate-600">
+                  Establish a reliable "Line × Day" reporting unit to answer key business questions: capacity loss drivers, yield stability, and throughput constraints.
+                </p>
+              </div>
+            </div>
+          </section>
+  
+          <section>
+            <h3 class="text-xs font-black text-slate-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3 text-left">
+              <span class="w-8 h-px bg-slate-100"></span> 02. Methodology
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-10">
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-database text-slate-500"></i> A. Strategic Data Modeling (Star Schema)</h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• <b>Dimensions</b>: Defined Plant, Line, Machine, Product, and Reason Code structures to provide operational context.</li>
+                  <li>• <b>Facts</b>: Built transactional tables for Machine Events (RUN/STOP), Production Runs, and QC Results to ensure auditability.</li>
+                </ul>
+              </div>
+  
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-terminal text-slate-500"></i> B. Advanced SQL Engineering (Sessionization)</h4>
+                <p class="text-slate-500 text-base leading-normal font-light mb-3">Converted point-in-time machine state logs into durations using <b>window functions</b>:</p>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• Utilized <b>LEAD(event_ts)</b> to retrieve the subsequent timestamp and calculate duration per state.</li>
+                  <li>• Built <b>Data Quality Defensive Logic</b>: Used <b>COALESCE</b> for active sessions and <b>GREATEST(..., 0)</b> to mitigate logging errors.</li>
+                </ul>
+              </div>
+  
+              <div>
+                <h4 class="text-slate-900 text-lg font-bold mb-2 flex items-center gap-2"><i class="fas fa-bolt text-slate-500"></i> C. KPI Mart Build & Optimization</h4>
+                <ul class="text-slate-500 text-base leading-normal font-light space-y-2">
+                  <li>• <b>Materialization</b>: Aggregated durations to line-level and combined with output records to create <b>mart_daily_line_kpi</b>.</li>
+                  <li>• <b>Performance</b>: Designed a composite index on <b>(day, line_id)</b> to accelerate common range-filter and comparison patterns.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+  
+          <section>
+            <h3 class="text-xs font-black text-slate-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3 text-left">
+              <span class="w-8 h-px bg-slate-100"></span> 03. Results & Insights
+            </h3>
+  
+            <div class="pl-11 border-l-2 border-slate-100 space-y-8">
+              <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100">
+                <p class="text-slate-700 font-semibold mb-6 text-left">The warehouse enables instantaneous line benchmarking across three core pillars:</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div class="bg-white border border-slate-100 rounded-2xl p-5">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 text-left">Availability</p>
+                    <p class="text-slate-900 font-black text-xl italic mb-1 text-left">Runtime & Downtime</p>
+                    <p class="text-slate-600 text-sm text-left">Quantifying capacity loss by mapping events to operational time.</p>
+                  </div>
+                  <div class="bg-white border border-slate-100 rounded-2xl p-5">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 text-left">Quality</p>
+                    <p class="text-slate-900 font-black text-xl italic mb-1 text-left">Yield</p>
+                    <p class="text-slate-600 text-sm text-left">Connecting good unit production to total line output.</p>
+                  </div>
+                  <div class="bg-white border border-slate-100 rounded-2xl p-5">
+                    <p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 text-left">Productivity</p>
+                    <p class="text-slate-900 font-black text-xl italic mb-1 text-left">Throughput</p>
+                    <p class="text-slate-600 text-sm text-left">Units per active hour, isolating performance from capacity stops.</p>
+                  </div>
+                </div>
+  
+                <div class="mt-8 pt-8 border-t border-slate-200/60 text-left">
+                  <h4 class="text-sm font-black text-slate-900 uppercase tracking-widest mb-4">Internalized Domain Insights</h4>
+                  <p class="text-slate-600 text-lg leading-relaxed font-light">
+                    This project reinforced my belief that <b>"SQL Engineering is Domain Mapping."</b> I discovered critical "Integration Gaps"—cases where machine logs showed runtime but ERP records showed zero output. Identifying such discrepancies highlights the dual role of a data analyst as both a <b>technical architect</b> and a <b>quality validator</b> within a complex manufacturing environment.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+  
+          <section>
+            <h3 class="text-xs font-black text-slate-600 uppercase tracking-[0.3em] mb-6 flex items-center gap-3 text-left">
+              <span class="w-8 h-px bg-slate-100"></span> 04. Deliverables & Practical Use
+            </h3>
+            <div class="pl-11 border-l-2 border-slate-100 space-y-6">
+              <div class="bg-slate-50 p-8 rounded-[2.5rem] border border-slate-100 text-left">
+                <ul class="text-slate-600 leading-normal font-light space-y-3">
+                  <li>• <b>Reproducible Foundation</b>: Local PostgreSQL warehouse scripts for line/day performance trends.</li>
+                  <li>• <b>BI-Ready Mart</b>: A persistent table for downstream Tableau/Looker integration without re-computing complex logic.</li>
+                </ul>
+              </div>
+              <a href="https://github.com/ianYongchanLee/manufacturing-ops-sql" target="_blank"
+                class="inline-flex items-center gap-3 bg-slate-600 text-white px-8 py-4 rounded-2xl hover:bg-slate-700 transition shadow-lg shadow-indigo-200 font-bold uppercase tracking-widest text-xs">
+                <i class="fab fa-github"></i> View Repository on GitHub
+              </a>
             </div>
           </section>
         </div>
